@@ -2,7 +2,7 @@ import { KolButton, KolTable } from '@public-ui/react';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { getRoot } from '../react-roots';
 import { getBelege, removeBeleg, subscribeBelege } from '../shared/store';
-import { Beleg } from './types';
+import { Beleg } from '../shared/types';
 
 export const BelegList: FunctionComponent = () => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());

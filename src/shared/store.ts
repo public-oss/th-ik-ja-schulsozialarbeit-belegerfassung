@@ -1,4 +1,4 @@
-import { Beleg } from '../components/types';
+import { Beleg } from './types';
 import { Subject, Subscription, Observer } from 'rxjs';
 
 const IDENTIFIER = 'mira-app-belege';
