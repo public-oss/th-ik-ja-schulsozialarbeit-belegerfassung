@@ -20,7 +20,7 @@
 		"coverage": "cross-env NODE_ENV=test nyc mocha",
 		"cucumber": "cross-env NIGHTWATCH_ENV=chrome cucumber-js tests/cucumber/features/**/*.feature --require @babel/register --require cucumber.conf.js --require tests/cucumber/step-definitions --format node_modules/cucumber-pretty --format json:.reports/cucumber/report.json",
 		"e2e": "nightwatch",
-		"format": "prettier --check",
+		"format": "prettier --check \"{src,tests}/**/*.{html,js,json,jsx,ts,tsx,gql,graphql}\"",
 		"lint": "eslint \"{src,tests}/**/*.{html,js,json,jsx,ts,tsx,gql,graphql}\"",
 		"prepare": "rimraf .husky && husky install && husky add .husky/commit-msg \"npx commitlint --edit $1\" && husky add .husky/pre-commit \"pnpm lint\" && husky add .husky/pre-commit \"pnpm format\" && husky add .husky/pre-commit \"pnpm unused\"",
 		"serve": "cross-env NODE_ENV=development webpack serve --devtool=source-map --no-hot",

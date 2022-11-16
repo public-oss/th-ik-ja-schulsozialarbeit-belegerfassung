@@ -26,10 +26,32 @@ export const BelegList: FunctionComponent = () => {
 						{
 							label: 'lfd. Nr.',
 							key: '',
+							render: (el, _cell, tupel, data) => {
+								const index = data.indexOf(tupel);
+								getRoot(el).render(
+									<span
+										style={{
+											display: 'block',
+											textAlign: 'right',
+											width: 'full',
+										}}
+									>
+										{index + 1}
+									</span>
+								);
+							},
 						},
 						{
 							label: 'Zahlung',
 							key: 'payment',
+							render: (el, _cell, tupel) => {
+								getRoot(el).render(
+									<kol-span
+										_icon={`fa-solid fa-arrow-${tupel.payment === 'in' ? 'right' : 'left'}`}
+										_label={tupel.payment === 'in' ? 'Einzahlung' : 'Auszahlung'}
+									></kol-span>
+								);
+							},
 						},
 						{
 							label: 'Art',
@@ -42,10 +64,25 @@ export const BelegList: FunctionComponent = () => {
 						{
 							label: 'Datum',
 							key: 'date',
+							textAlign: 'center',
 						},
 						{
 							label: 'Betrag',
 							key: 'amount',
+							render: (el, _cell, tupel, data) => {
+								const index = data.indexOf(tupel);
+								getRoot(el).render(
+									<span
+										style={{
+											display: 'block',
+											textAlign: 'right',
+											width: 'full',
+										}}
+									>
+										{index + 1} €
+									</span>
+								);
+							},
 						},
 						{
 							label: 'Verwendungszweck',
@@ -62,7 +99,7 @@ export const BelegList: FunctionComponent = () => {
 							render: (el, _cell, tupel) => {
 								getRoot(el).render(
 									<div style={{ display: 'flex', gap: '.5em', justifyContent: 'center' }}>
-										<KolButton _icon="fa-solid fa-edit" _iconOnly _label="Bearbeiten"></KolButton>
+										<KolButton _icon="fa-solid fa-edit" _iconOnly _label="Bearbeiten" _variant="secondary"></KolButton>
 										<KolButton
 											_icon="fa-solid fa-trash"
 											_on={{
@@ -72,6 +109,7 @@ export const BelegList: FunctionComponent = () => {
 											}}
 											_iconOnly
 											_label="Löschen"
+											_variant="secondary"
 										></KolButton>
 									</div>
 								);

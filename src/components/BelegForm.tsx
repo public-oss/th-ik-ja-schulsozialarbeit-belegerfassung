@@ -1,6 +1,6 @@
-import { DEFAULT_REQUIRED_VALIDATOR, FormControl, InputControl, ValidationHandler } from '@leanup/form';
+import { AbstractFormatter, AbstractValidator, FormatHandler, FormControl, InputControl, RequiredValidator, ValidationHandler } from '@leanup/form';
 import { LeanInputAdapter } from '@leanup/kolibri-react';
-import { Option, SelectOption } from '@public-ui/components';
+import { Option, SelectOption, ToasterService } from '@public-ui/components';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
 import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
@@ -9,8 +9,38 @@ import { addBeleg } from '../shared/store';
 
 const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
 
+class MyRequiredValidator extends RequiredValidator {
+	public constructor() {
+		super('Bitte geben Sie einen Wert ein.');
+	}
+}
+
+class MyMinValidator extends AbstractValidator {
+	public constructor() {
+		super('Bitte geben Sie einen Wert größer 0 ein.');
+	}
+	public valid(value: string): boolean {
+		return parseFloat(value) > 0;
+	}
+}
+
+class SelectMapper extends AbstractFormatter {
+	public parse(value: string[]): string {
+		return value[0];
+	}
+	public format(value: string): string[] {
+		return [value];
+	}
+}
+
 const validationHandler = new ValidationHandler();
-validationHandler.add(DEFAULT_REQUIRED_VALIDATOR);
+validationHandler.add(new MyRequiredValidator());
+
+const validationHandlerMin = new ValidationHandler();
+validationHandlerMin.add(new MyMinValidator());
+
+const formatHandler = new FormatHandler();
+formatHandler.add(new SelectMapper());
 
 class BelegFormControl extends FormControl {
 	public constructor() {
@@ -24,9 +54,10 @@ class BelegFormControl extends FormControl {
 		this.addControl(new InputControl('reason', { mandatory: true }));
 		this.addControl(new InputControl('receiver', { mandatory: true }));
 
+		this.getInput('kind')?.setFormatHandler(formatHandler);
 		this.getInput('nr')?.setValidationHandler(validationHandler);
 		this.getInput('date')?.setValidationHandler(validationHandler);
-		this.getInput('amount')?.setValidationHandler(validationHandler);
+		this.getInput('amount')?.setValidationHandler(validationHandlerMin);
 		this.getInput('reason')?.setValidationHandler(validationHandler);
 		this.getInput('receiver')?.setValidationHandler(validationHandler);
 
@@ -61,59 +92,64 @@ const AUS_EIN: Option<string>[] = [
 const ARTEN: SelectOption<string>[] = [
 	{
 		label: 'Projektbezogenen Verwaltungskosten',
-		value: '',
+		value: 'Projektbezogenen Verwaltungskosten',
 	},
 	{
 		label: 'Verbrauchsmaterialen',
-		value: '',
+		value: 'Verbrauchsmaterialen',
 	},
 	{
 		label: 'Fortbildungen, Supervision',
-		value: '',
+		value: 'Fortbildungen, Supervision',
 	},
 	{
 		label: 'Einzelfallhilfe',
-		value: '',
+		value: 'Einzelfallhilfe',
 	},
 	{
 		label: 'Sozialpädagogische Gruppenarbeit',
-		value: '',
+		value: 'Sozialpädagogische Gruppenarbeit',
 	},
 	{
 		label: `AG's`,
-		value: '',
+		value: `AG's`,
 	},
 	{
 		label: 'Prävention, Gesundheitsförderung',
-		value: '',
+		value: 'Prävention, Gesundheitsförderung',
 	},
 ];
 
 export const BelegForm: FunctionComponent = () => {
 	const [form, setForm] = useState(new BelegFormControl());
+	const [saved, setSaved] = useState(false);
 	const [touched, setTouched] = useState(false);
 	const [error, setError] = useState('');
 
 	const reset = () => {
-		setForm(new BelegFormControl());
 		setError('');
+		setForm(new BelegFormControl());
+		setTouched(false);
 	};
 
 	const onForm: KoliBriFormCallbacks = {
 		onReset: (...args) => {
 			console.log('reset', args);
-			setTouched(false);
 			reset();
 		},
 		onSubmit: (...args) => {
 			console.log('submit', args);
-			form.disabled = true;
+			setError('');
+			setSaved(false);
 			setTouched(true);
-			try {
-				addBeleg(form.getData());
-				reset();
-			} catch (e) {
-				setError((e as Error).message);
+			if (form.valid) {
+				try {
+					addBeleg(form.getData());
+					setSaved(true);
+					reset();
+				} catch (e) {
+					setError((e as Error).message);
+				}
 			}
 		},
 	};
@@ -140,11 +176,11 @@ export const BelegForm: FunctionComponent = () => {
 							</KolInputText>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('date') as InputControl}>
-							<KolInputDate _id="nr" _max={TODAY} _touched={touched} _type="date">
+							<KolInputNumber _id="nr" _max={TODAY} _touched={touched} _type="date">
 								<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
 									Zahlungsdatum
 								</KolAbbr>
-							</KolInputDate>
+							</KolInputNumber>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
 							<KolInputNumber _id="nr" _touched={touched}>
@@ -162,6 +198,11 @@ export const BelegForm: FunctionComponent = () => {
 							</KolInputText>
 						</LeanInputAdapter>
 					</div>
+					{saved && (
+						<KolAlert _alert _heading="Beleg gespeichert" _type="success" _variant="card">
+							Der Beleg wurde erfolgreich gespeichert.
+						</KolAlert>
+					)}
 					{error.length > 0 && (
 						<KolAlert _alert _heading="Fehler" _type="error" _variant="card">
 							{error}
