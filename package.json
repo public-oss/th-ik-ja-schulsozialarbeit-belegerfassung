@@ -33,8 +33,8 @@
 	},
 	"dependencies": {
 		"@leanup/form": "1.3.39",
-		"@leanup/kolibri-components": "1.0.2",
-		"@leanup/kolibri-react": "1.0.2",
+		"@leanup/kolibri-components": "1.0.4",
+		"@leanup/kolibri-react": "1.0.4",
 		"@leanup/lib": "1.3.39",
 		"@public-ui/components": "1.1.10",
 		"@public-ui/core": "1.1.10",
