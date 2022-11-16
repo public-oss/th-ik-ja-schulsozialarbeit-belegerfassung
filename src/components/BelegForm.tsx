@@ -1,12 +1,16 @@
-import { FormControl, InputControl } from '@leanup/form';
+import { DEFAULT_REQUIRED_VALIDATOR, FormControl, InputControl, ValidationHandler } from '@leanup/form';
 import { LeanInputAdapter } from '@leanup/kolibri-react';
 import { Option, SelectOption } from '@public-ui/components';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
-import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
+import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
+import { KolAbbr, KolAlert, KolButton, KolForm, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
-import { addBeleg, getBelege } from '../shared/store';
+import { addBeleg } from '../shared/store';
 
-const TODAY = new Date(Date.now());
+const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
+
+const validationHandler = new ValidationHandler();
+validationHandler.add(DEFAULT_REQUIRED_VALIDATOR);
 
 class BelegFormControl extends FormControl {
 	public constructor() {
@@ -19,6 +23,12 @@ class BelegFormControl extends FormControl {
 		this.addControl(new InputControl('amount', { mandatory: true }));
 		this.addControl(new InputControl('reason', { mandatory: true }));
 		this.addControl(new InputControl('receiver', { mandatory: true }));
+
+		this.getInput('nr')?.setValidationHandler(validationHandler);
+		this.getInput('date')?.setValidationHandler(validationHandler);
+		this.getInput('amount')?.setValidationHandler(validationHandler);
+		this.getInput('reason')?.setValidationHandler(validationHandler);
+		this.getInput('receiver')?.setValidationHandler(validationHandler);
 
 		this.reset();
 	}
@@ -81,6 +91,7 @@ const ARTEN: SelectOption<string>[] = [
 
 export const BelegForm: FunctionComponent = () => {
 	const [form, setForm] = useState(new BelegFormControl());
+	const [touched, setTouched] = useState(false);
 	const [error, setError] = useState('');
 
 	const reset = () => {
@@ -91,11 +102,13 @@ export const BelegForm: FunctionComponent = () => {
 	const onForm: KoliBriFormCallbacks = {
 		onReset: (...args) => {
 			console.log('reset', args);
+			setTouched(false);
 			reset();
 		},
 		onSubmit: (...args) => {
 			console.log('submit', args);
 			form.disabled = true;
+			setTouched(true);
 			try {
 				addBeleg(form.getData());
 				reset();
@@ -111,34 +124,42 @@ export const BelegForm: FunctionComponent = () => {
 				<div className="grid gap-4">
 					<div className="grid sm:grid-cols-2 gap-4 text">
 						<LeanInputAdapter _control={form.getInput('payment') as InputControl}>
-							<KolInputRadio _id="payment" _orientation="horizontal" _list={AUS_EIN}>
+							<KolInputRadio _id="payment" _list={AUS_EIN} _orientation="horizontal" _touched={touched}>
 								Zahlung
 							</KolInputRadio>
 						</LeanInputAdapter>
 						<div></div>
 						<LeanInputAdapter _control={form.getInput('kind') as InputControl}>
-							<KolSelect _id="kind" _list={ARTEN}>
+							<KolSelect _id="kind" _list={ARTEN} _touched={touched}>
 								Art
 							</KolSelect>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('nr') as InputControl}>
-							<KolInputText _id="nr">Belegnummer</KolInputText>
+							<KolInputText _id="nr" _touched={touched}>
+								Belegnummer
+							</KolInputText>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('date') as InputControl}>
-							<KolInputDate _id="nr" _max={TODAY}>
+							<KolInputNumber _id="nr" _max={TODAY} _touched={touched} _type="date">
 								<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
 									Zahlungsdatum
 								</KolAbbr>
-							</KolInputDate>
+							</KolInputNumber>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
-							<KolInputNumber _id="nr">Betrag</KolInputNumber>
+							<KolInputNumber _id="nr" _touched={touched}>
+								Betrag
+							</KolInputNumber>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('reason') as InputControl}>
-							<KolInputText _id="nr">Zahlungsgrund/Verwendungszweck</KolInputText>
+							<KolInputText _id="nr" _touched={touched}>
+								Zahlungsgrund/Verwendungszweck
+							</KolInputText>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('receiver') as InputControl}>
-							<KolInputText _id="nr">Zahlungsempfänger</KolInputText>
+							<KolInputText _id="nr" _touched={touched}>
+								Zahlungsempfänger
+							</KolInputText>
 						</LeanInputAdapter>
 					</div>
 					{error.length > 0 && (
