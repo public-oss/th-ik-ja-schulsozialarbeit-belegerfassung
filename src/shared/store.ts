@@ -14,7 +14,7 @@ const APP: App = {
 	},
 };
 const BELEGE: Map<string, Beleg> = new Map();
-const restoreApp = localStorage.getItem(IDENTIFIER);
+const restoreApp = sessionStorage.getItem(IDENTIFIER);
 
 export const getBelege = () => {
 	return new Map<string, Beleg>(BELEGE);
@@ -69,7 +69,7 @@ export const saveBelege = () => {
 };
 
 export const saveApp = () => {
-	localStorage.setItem(IDENTIFIER, JSON.stringify(APP));
+	sessionStorage.setItem(IDENTIFIER, JSON.stringify(APP));
 	SUBJECT.next(getBelege());
 };
 
