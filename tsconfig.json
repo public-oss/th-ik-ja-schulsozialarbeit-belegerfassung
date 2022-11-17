@@ -27,6 +27,6 @@
 		"jsxFactory": "React.createElement",
 		"jsxFragmentFactory": "React.Fragment"
 	},
-	"include": ["src/**/*", "tests/**/*", "node_modules/@leanup/**/*", "decs.d.ts"],
-	"exclude": ["node_modules/@leanup/**/template/**/*"]
+	"include": ["src/**/*", "tests/**/*"],
+	"exclude": ["node_modules/**/*"]
 }

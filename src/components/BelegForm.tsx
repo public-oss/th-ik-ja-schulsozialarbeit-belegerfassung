@@ -1,9 +1,9 @@
 import { AbstractFormatter, AbstractValidator, FormatHandler, FormControl, InputControl, RequiredValidator, ValidationHandler } from '@leanup/form';
 import { LeanInputAdapter } from '@leanup/kolibri-react';
-import { Option, SelectOption, ToasterService } from '@public-ui/components';
+import { Option, SelectOption } from '@public-ui/components';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
-import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
+import { KolAbbr, KolAlert, KolButton, KolForm, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
 import { addBeleg } from '../shared/store';
 
@@ -158,7 +158,7 @@ export const BelegForm: FunctionComponent = () => {
 		<div className="grid gap-4">
 			<KolForm _on={onForm}>
 				<div className="grid gap-4">
-					<div className="grid sm:grid-cols-2 gap-4 text">
+					<div className="grid md:grid-cols-2 gap-4 text">
 						<LeanInputAdapter _control={form.getInput('payment') as InputControl}>
 							<KolInputRadio _id="payment" _list={AUS_EIN} _orientation="horizontal" _touched={touched}>
 								Zahlung
@@ -208,9 +208,9 @@ export const BelegForm: FunctionComponent = () => {
 							{error}
 						</KolAlert>
 					)}
-					<div className="flex gap-4 justify-end">
-						<KolButton _label="Speichern" _type="submit" _variant="primary" />
-						<KolButton _label="Zurücksetzen" _type="reset" />
+					<div className="grid md:flex md:gap-4 md:justify-end ">
+						<KolButton className="w-full md:w-10em" _label="Speichern" _type="submit" _variant="primary" />
+						<KolButton className="w-full md:w-10em" _label="Zurücksetzen" _type="reset" />
 					</div>
 				</div>
 			</KolForm>

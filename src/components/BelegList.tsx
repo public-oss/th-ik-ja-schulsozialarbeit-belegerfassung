@@ -79,7 +79,7 @@ export const BelegList: FunctionComponent = () => {
 											width: 'full',
 										}}
 									>
-										{index + 1} €
+										{tupel.amount} €
 									</span>
 								);
 							},
@@ -99,7 +99,7 @@ export const BelegList: FunctionComponent = () => {
 							render: (el, _cell, tupel) => {
 								getRoot(el).render(
 									<div style={{ display: 'flex', gap: '.5em', justifyContent: 'center' }}>
-										<KolButton _icon="fa-solid fa-edit" _iconOnly _label="Bearbeiten" _variant="secondary"></KolButton>
+										<KolButton _disabled _icon="fa-solid fa-edit" _iconOnly _label="Bearbeiten" _variant="secondary"></KolButton>
 										<KolButton
 											_icon="fa-solid fa-trash"
 											_on={{
