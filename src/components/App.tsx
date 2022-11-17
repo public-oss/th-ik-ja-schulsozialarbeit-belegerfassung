@@ -1,4 +1,4 @@
-import { KolHeading } from '@public-ui/react';
+import { KolAbbr, KolHeading, KolKolibri, KolLink } from '@public-ui/react';
 import React, { FunctionComponent } from 'react';
 import { BelegForm } from './BelegForm';
 import { BelegList } from './BelegList';
@@ -19,6 +19,20 @@ export const App: FunctionComponent = () => {
 			<BelegForm />
 			<KolHeading _level={2}>Belegliste</KolHeading>
 			<BelegList />
+			<div className="mt-8 text-center">
+				<hr className="w-80%" />
+				<span>
+					Unterstützt durch{' '}
+					<KolAbbr _title="Komponenten-Bibliothek für die Barrierefreiheit">
+						<strong>KoliBri</strong>
+					</KolAbbr>{' '}
+					- die{' '}
+					<KolLink _href="https://public-ui.github.io" _target="kolibri">
+						Komponenten-Bibliothek für die Barrierefreiheit
+					</KolLink>
+					<KolKolibri _labeled={false} />
+				</span>
+			</div>
 		</main>
 	);
 };

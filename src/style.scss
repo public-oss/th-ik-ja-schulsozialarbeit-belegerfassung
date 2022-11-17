@@ -1,18 +1,9 @@
 * {
-	font-family: var(--font-family);
-}
-
-p {
-	margin: 0;
+	font-family: var(--th-font-family);
 }
 
 kol-kolibri {
 	display: block;
-	margin: 0 auto;
-	width: 200px;
-}
-
-kol-link::after,
-kol-link::before {
-	content: ' ';
+	margin: 1em auto;
+	width: 100px;
 }
