@@ -5,7 +5,7 @@ import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/component
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
 import { KolAbbr, KolAlert, KolButton, KolForm, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
-import { addBeleg } from '../shared/store';
+import { addBeleg, getAvailableReasons, getAvailableReceivers } from '../shared/store';
 
 const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
 
@@ -135,6 +135,7 @@ export const BelegForm: FunctionComponent = () => {
 	const onForm: KoliBriFormCallbacks = {
 		onReset: (...args) => {
 			console.log('reset', args);
+			setSaved(false);
 			reset();
 		},
 		onSubmit: (...args) => {
@@ -188,12 +189,12 @@ export const BelegForm: FunctionComponent = () => {
 							</KolInputNumber>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('reason') as InputControl}>
-							<KolInputText _id="nr" _touched={touched}>
+							<KolInputText _id="nr" _list={getAvailableReasons()} _touched={touched}>
 								Zahlungsgrund/Verwendungszweck
 							</KolInputText>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('receiver') as InputControl}>
-							<KolInputText _id="nr" _touched={touched}>
+							<KolInputText _id="nr" _list={getAvailableReceivers()} _touched={touched}>
 								Zahlungsempfänger
 							</KolInputText>
 						</LeanInputAdapter>

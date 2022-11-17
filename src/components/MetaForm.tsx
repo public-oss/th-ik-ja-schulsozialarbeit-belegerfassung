@@ -1,12 +1,9 @@
-import { AbstractFormatter, AbstractValidator, FormatHandler, FormControl, InputControl, RequiredValidator, ValidationHandler } from '@leanup/form';
+import { FormControl, InputControl, RequiredValidator, ValidationHandler } from '@leanup/form';
 import { LeanInputAdapter } from '@leanup/kolibri-react';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
-import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
 import { KolAlert, KolButton, KolForm, KolInputText } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
-import { addBeleg } from '../shared/store';
-
-const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
+import { addBeleg, getMeta, saveMeta } from '../shared/store';
 
 class MyRequiredValidator extends RequiredValidator {
 	public constructor() {
@@ -14,32 +11,8 @@ class MyRequiredValidator extends RequiredValidator {
 	}
 }
 
-class MyMinValidator extends AbstractValidator {
-	public constructor() {
-		super('Bitte geben Sie einen Wert größer 0 ein.');
-	}
-	public valid(value: string): boolean {
-		return parseFloat(value) > 0;
-	}
-}
-
-class SelectMapper extends AbstractFormatter {
-	public parse(value: string[]): string {
-		return value[0];
-	}
-	public format(value: string): string[] {
-		return [value];
-	}
-}
-
 const validationHandler = new ValidationHandler();
 validationHandler.add(new MyRequiredValidator());
-
-const validationHandlerMin = new ValidationHandler();
-validationHandlerMin.add(new MyMinValidator());
-
-const formatHandler = new FormatHandler();
-formatHandler.add(new SelectMapper());
 
 class MetaFormControl extends FormControl {
 	public constructor() {
@@ -55,10 +28,7 @@ class MetaFormControl extends FormControl {
 	}
 
 	public readonly reset = () => {
-		this.setData({
-			school: '',
-			author: '',
-		});
+		this.setData(getMeta());
 		this.disabled = false;
 	};
 }
@@ -78,6 +48,7 @@ export const MetaForm: FunctionComponent = () => {
 	const onForm: KoliBriFormCallbacks = {
 		onReset: (...args) => {
 			console.log('reset', args);
+			setSaved(false);
 			reset();
 		},
 		onSubmit: (...args) => {
@@ -87,7 +58,7 @@ export const MetaForm: FunctionComponent = () => {
 			setTouched(true);
 			if (form.valid) {
 				try {
-					addBeleg(form.getData());
+					saveMeta(form.getData());
 					setSaved(true);
 					reset();
 				} catch (e) {
