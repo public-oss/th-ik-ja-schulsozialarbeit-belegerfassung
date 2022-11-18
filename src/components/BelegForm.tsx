@@ -3,7 +3,7 @@ import { LeanInputAdapter } from '@leanup/kolibri-react';
 import { Option, SelectOption } from '@public-ui/components';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
-import { KolAbbr, KolAlert, KolButton, KolForm, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
+import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
 import { addBeleg, getAvailableReasons, getAvailableReceivers } from '../shared/store';
 
@@ -177,11 +177,11 @@ export const BelegForm: FunctionComponent = () => {
 							</KolInputText>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('date') as InputControl}>
-							<KolInputNumber _id="nr" _max={TODAY} _touched={touched} _type="date">
+							<KolInputDate _id="nr" _max={TODAY} _touched={touched} _type="date">
 								<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
 									Zahlungsdatum
 								</KolAbbr>
-							</KolInputNumber>
+							</KolInputDate>
 						</LeanInputAdapter>
 						<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
 							<KolInputNumber _id="nr" _touched={touched}>

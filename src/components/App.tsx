@@ -5,10 +5,19 @@ import { BelegList } from './BelegList';
 import { MetaForm } from './MetaForm';
 
 export const App: FunctionComponent = () => {
-	const [advice, setAdvice] = useState(true);
+	const [advice] = useState(true);
 
 	return (
 		<main className="bmf container mx-auto p-4 max-w-1280px grid gap-4">
+			<KolAlert>
+				<p>
+					Diese Webanwendung ist unabhängig von öffentlichen Institutionen und zu Anschauungszwecken im{' '}
+					<KolLink _href="https://thueringen.de/styleguide/" _target="styleguide">
+						Online-Styleguide des Freistaates Thüringen
+					</KolLink>{' '}
+					umgesetzt worden.
+				</p>
+			</KolAlert>
 			<div className="grid sm:grid-cols-2 items-center align-center">
 				<div className="sm:text-right sm:order-2">
 					<img alt="Logo Freistaat Thüringen" className="pt-4 pr-4" src="https://thueringen.de/styleguide/freistaat-thueringen-logo.svg" width="250" />
@@ -22,13 +31,7 @@ export const App: FunctionComponent = () => {
 			<KolHeading _level={2}>Belegliste</KolHeading>
 			<BelegList />
 			{advice && (
-				<KolAlert
-					_type="info"
-					_hasCloser={false}
-					_on={{
-						onClose: () => setAdvice(false),
-					}}
-				>
+				<KolAlert _type="info">
 					<p>Diese Webanwendung setzt eine Excel-basierte Fachanwendung für die Belegerfassung der Schulsozialarbeiter:innen im Ilm-Kreis / Thüringen um.</p>
 					<p>
 						<strong>Motivation</strong>
