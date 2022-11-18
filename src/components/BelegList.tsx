@@ -7,8 +7,6 @@ import { Beleg } from '../shared/types';
 export const BelegList: FunctionComponent = () => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());
 
-	useEffect(console.log, [belege]);
-
 	const belege$ = subscribeBelege(setBelege);
 
 	useEffect(() => {
@@ -70,7 +68,6 @@ export const BelegList: FunctionComponent = () => {
 							label: 'Betrag',
 							key: 'amount',
 							render: (el, _cell, tupel, data) => {
-								const index = data.indexOf(tupel);
 								getRoot(el).render(
 									<span
 										style={{

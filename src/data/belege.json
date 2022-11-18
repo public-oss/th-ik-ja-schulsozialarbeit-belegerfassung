@@ -3,6 +3,8 @@
 		"nr": 1,
 		"date": "",
 		"amount": 21.95,
+		"payment": "out",
+		"kind": "Projektbezogenen Verwaltungskosten",
 		"reason": "Vers & Form/Fachliteratur/ Einzelfallhilfe",
 		"receiver": "Hugendubel"
 	},
@@ -10,6 +12,8 @@
 		"nr": 2,
 		"date": "2022-01-05",
 		"amount": 3.99,
+		"kind": "Verbrauchsmaterialen",
+		"payment": "out",
 		"reason": "Mandalas/Einzelfallhilfe",
 		"receiver": "Netto (Handkasse)"
 	},
@@ -17,6 +21,8 @@
 		"nr": 3,
 		"date": "2022-01-17",
 		"amount": 18.0,
+		"payment": "out",
+		"kind": "Fortbildungen, Supervision",
 		"reason": "Bücher Soziales Kompetenztraining Escaperoom",
 		"receiver": "Bücher.de"
 	},
@@ -24,13 +30,17 @@
 		"nr": 4,
 		"date": "2022-01-18",
 		"amount": 13.57,
+		"kind": "Fortbildungen, Supervision",
+		"payment": "out",
 		"reason": "Fasermaler/Gruppenarbeit",
 		"receiver": "Netto (Handkasse)"
 	},
 	{
 		"nr": 5,
 		"date": "",
+		"kind": "Einzelfallhilfe",
 		"amount": 19.95,
+		"payment": "out",
 		"reason": "Bücher/Soziales Kompetenztraining",
 		"receiver": "Bücher.de"
 	},
@@ -38,6 +48,8 @@
 		"nr": 6,
 		"date": "2022-01-12",
 		"amount": 55.4,
+		"payment": "out",
+		"kind": "Sozialpädagogische Gruppenarbeit",
 		"reason": "Corona Schnelltest/ Sachkostenhilfe",
 		"receiver": "DM Drogeriemarkt (Handkasse)"
 	},
@@ -45,6 +57,7 @@
 		"nr": 7,
 		"date": "2022-01-21",
 		"amount": 21.14,
+		"payment": "out",
 		"reason": "Pfennigpfeifer/Soziales Kompetenztraining",
 		"receiver": "Pfennigpfeifer (Handkasse)"
 	},
@@ -52,13 +65,17 @@
 		"nr": 8,
 		"date": "2022-01-26",
 		"amount": 24.94,
+		"kind": "Prävention, Gesundheitsförderung",
+		"payment": "out",
 		"reason": "Bücher/Einzelfallhilfe",
 		"receiver": "Lidl (Handkasse)"
 	},
 	{
 		"nr": 9,
+		"kind": "AG's",
 		"date": "2022-02-09",
 		"amount": 50.17,
+		"payment": "out",
 		"reason": "Getränke/Prävention-Null Alkohol Voll Power",
 		"receiver": "Kaufland (Handkasse)"
 	},
@@ -66,6 +83,7 @@
 		"nr": 10,
 		"date": "2022-04-05",
 		"amount": 33.3,
+		"payment": "out",
 		"reason": "Material/Sozialeskompetenztraining",
 		"receiver": "TEDI"
 	},
@@ -73,6 +91,7 @@
 		"nr": 11,
 		"date": "2022-04-05",
 		"amount": 28.99,
+		"payment": "out",
 		"reason": "Zutaten Kochen & Backen/ AG",
 		"receiver": "ALDI"
 	},
@@ -80,6 +99,7 @@
 		"nr": 12,
 		"date": "2022-04-05",
 		"amount": 4.0,
+		"payment": "out",
 		"reason": "Zutaten Kochen & Backen/ AG",
 		"receiver": "TEDI"
 	},
@@ -87,6 +107,7 @@
 		"nr": 13,
 		"date": "2022-04-12",
 		"amount": 13.0,
+		"payment": "out",
 		"reason": "Buch/Soziales Kompetenztraining Escaperoom",
 		"receiver": "Hugendubel"
 	},
@@ -94,6 +115,7 @@
 		"nr": 14,
 		"date": "2022-04-27",
 		"amount": 18.41,
+		"payment": "out",
 		"reason": "Lollils, Soziales Kompetenztraining/Kennenlern neue 5er",
 		"receiver": "Tedi"
 	},
@@ -101,6 +123,7 @@
 		"nr": 15,
 		"date": "2022-05-06",
 		"amount": 25.35,
+		"payment": "out",
 		"reason": "Suchpräventionsmaterial",
 		"receiver": "Fachstelle für Suchprävention Berlin"
 	},
@@ -108,6 +131,7 @@
 		"nr": 16,
 		"date": "2022-05-12",
 		"amount": 14.95,
+		"payment": "out",
 		"reason": "Ausmalbücher/Einzelfallhilfe",
 		"receiver": "City Kaufhaus Ilmenau"
 	},
@@ -115,6 +139,7 @@
 		"nr": 17,
 		"date": "2022-05-12",
 		"amount": 13.58,
+		"payment": "out",
 		"reason": "Farbstifte/Einzelfallhilfe",
 		"receiver": "Müller"
 	},
@@ -122,12 +147,14 @@
 		"nr": 18,
 		"date": "2022-05-24",
 		"amount": 17.37,
+		"payment": "out",
 		"reason": "Zutaten Kochen & Backen/ AG",
 		"receiver": "ALDI"
 	},
 	{
 		"nr": 19,
 		"amount": 26.63,
+		"payment": "out",
 		"reason": "Filme/LGBTIQ AG",
 		"receiver": "Medimiops"
 	},
@@ -135,6 +162,7 @@
 		"nr": 20,
 		"date": "",
 		"amount": 30.99,
+		"payment": "out",
 		"reason": "Bücher/Vielfalt/ Sexuall Präventionsangebot",
 		"receiver": "Bücher"
 	},
@@ -142,6 +170,7 @@
 		"nr": 21,
 		"date": "2022-06-09",
 		"amount": 8.0,
+		"payment": "out",
 		"reason": "Straßenmalkreide/Kreide /Anne Frank Tag Projekt",
 		"receiver": "MC Pfennig  (230,01 Euro Bar ausgegen)"
 	},
@@ -149,6 +178,7 @@
 		"nr": 22,
 		"date": "2022-06-11",
 		"amount": 55.18,
+		"payment": "out",
 		"reason": "Material für Projektwoche",
 		"receiver": "Sconto"
 	},
@@ -156,6 +186,7 @@
 		"nr": 23,
 		"date": "2022-06-14",
 		"amount": 14.22,
+		"payment": "out",
 		"reason": "Zutaten Kochen & Backen/ AG",
 		"receiver": "Netto"
 	},
@@ -163,6 +194,7 @@
 		"nr": 24,
 		"date": "2022-06-14",
 		"amount": 9.15,
+		"payment": "out",
 		"reason": "Zutaten Kochen & Backen/ AG",
 		"receiver": "Netto"
 	},
@@ -170,6 +202,7 @@
 		"nr": 25,
 		"date": "2022-06-21",
 		"amount": 18.23,
+		"payment": "out",
 		"reason": "Material für Projektwoche",
 		"receiver": "Action"
 	},
@@ -177,6 +210,7 @@
 		"nr": 26,
 		"date": "2022-06-22",
 		"amount": 24.98,
+		"payment": "out",
 		"reason": "Neuschülerfest",
 		"receiver": "Müller"
 	},
@@ -184,6 +218,7 @@
 		"nr": 27,
 		"date": "2022-06-30",
 		"amount": 17.12,
+		"payment": "out",
 		"reason": "Schülervertetungsjahresabschluss Haus1",
 		"receiver": "Netto"
 	},
@@ -191,6 +226,7 @@
 		"nr": 28,
 		"date": "2022-07-01",
 		"amount": 26.71,
+		"payment": "out",
 		"reason": "Schülervertetungsjahresabschluss Haus2",
 		"receiver": "Netto"
 	},
@@ -198,6 +234,7 @@
 		"nr": 29,
 		"date": "2022-07-08",
 		"amount": 29.97,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Aldi"
 	},
@@ -205,6 +242,7 @@
 		"nr": 30,
 		"date": "2022-07-08",
 		"amount": 19.95,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "REWE"
 	},
@@ -212,6 +250,7 @@
 		"nr": 31,
 		"date": "2022-07-11",
 		"amount": 4.09,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Netto"
 	},
@@ -219,6 +258,7 @@
 		"nr": 32,
 		"date": "2022-07-11",
 		"amount": 10.82,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Netto"
 	},
@@ -226,6 +266,7 @@
 		"nr": 33,
 		"date": "2022-07-12",
 		"amount": 3.75,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Action"
 	},
@@ -233,6 +274,7 @@
 		"nr": 34,
 		"date": "2022-07-12",
 		"amount": 16.94,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Netto"
 	},
@@ -240,6 +282,7 @@
 		"nr": 35,
 		"date": "2022-07-13",
 		"amount": 12.75,
+		"payment": "out",
 		"reason": "Projektwoche-.Ich kann kochen",
 		"receiver": "Netto"
 	},
@@ -247,6 +290,7 @@
 		"nr": 36,
 		"date": "2022-08-25",
 		"amount": 9.21,
+		"payment": "out",
 		"reason": "Bürobedarf",
 		"receiver": "Action (Handkasse)"
 	},
@@ -254,6 +298,7 @@
 		"nr": 37,
 		"date": "",
 		"amount": 16.81,
+		"payment": "out",
 		"reason": "Themenhefte Klassenwerte/Gruppenarbeit",
 		"receiver": "Thalia"
 	},
@@ -261,6 +306,7 @@
 		"nr": 38,
 		"date": "2022-08-29",
 		"amount": 22.89,
+		"payment": "out",
 		"reason": "Schülervertretungsarbeit",
 		"receiver": "Multionline"
 	},
@@ -268,6 +314,7 @@
 		"nr": 39,
 		"date": "",
 		"amount": 15.99,
+		"payment": "out",
 		"reason": "Gruppenarbeit",
 		"receiver": "Thalia"
 	},
@@ -275,6 +322,7 @@
 		"nr": 40,
 		"date": "",
 		"amount": 74.04,
+		"payment": "out",
 		"reason": "Gruppenarbeit",
 		"receiver": "Thalia"
 	},
@@ -282,6 +330,7 @@
 		"nr": 41,
 		"date": "2022-09-05",
 		"amount": 5.49,
+		"payment": "out",
 		"reason": "Material für Projekt, kleine Forscherteams",
 		"receiver": "Mäc Geiz (Handkasse)"
 	},
@@ -289,6 +338,7 @@
 		"nr": 42,
 		"date": "2022-09-12",
 		"amount": 47.87,
+		"payment": "out",
 		"reason": "Einzelfallhilfe/Schulangst/Lernmethoden",
 		"receiver": "Medimops"
 	},
@@ -296,6 +346,7 @@
 		"nr": 43,
 		"date": "2020-09-13",
 		"amount": 21.7,
+		"payment": "out",
 		"reason": "Material für Projekt, kleine Forscherteams",
 		"receiver": "Med Masters"
 	},
@@ -303,6 +354,7 @@
 		"nr": 44,
 		"date": "2022-09-22",
 		"amount": 31.63,
+		"payment": "out",
 		"reason": "Kochen & Backen AG",
 		"receiver": "ALDI (Handkasse)"
 	},
@@ -310,6 +362,7 @@
 		"nr": 45,
 		"date": "2022-09-27",
 		"amount": 20.35,
+		"payment": "out",
 		"reason": "Kochen & Backen AG",
 		"receiver": "ALDI (Karte Martina)"
 	}

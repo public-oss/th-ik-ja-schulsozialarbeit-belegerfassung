@@ -5,6 +5,7 @@ import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/component
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
 import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
+import { ARTEN, AUS_EIN } from '../shared/constants';
 import { addBeleg, getAvailableReasons, getAvailableReceivers } from '../shared/store';
 
 const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
@@ -77,48 +78,6 @@ class BelegFormControl extends FormControl {
 		this.disabled = false;
 	};
 }
-
-const AUS_EIN: Option<string>[] = [
-	{
-		label: 'Einnahme',
-		value: 'in',
-	},
-	{
-		label: 'Ausgabe',
-		value: 'out',
-	},
-];
-
-const ARTEN: SelectOption<string>[] = [
-	{
-		label: 'Projektbezogenen Verwaltungskosten',
-		value: 'Projektbezogenen Verwaltungskosten',
-	},
-	{
-		label: 'Verbrauchsmaterialen',
-		value: 'Verbrauchsmaterialen',
-	},
-	{
-		label: 'Fortbildungen, Supervision',
-		value: 'Fortbildungen, Supervision',
-	},
-	{
-		label: 'Einzelfallhilfe',
-		value: 'Einzelfallhilfe',
-	},
-	{
-		label: 'Sozialpädagogische Gruppenarbeit',
-		value: 'Sozialpädagogische Gruppenarbeit',
-	},
-	{
-		label: `AG's`,
-		value: `AG's`,
-	},
-	{
-		label: 'Prävention, Gesundheitsförderung',
-		value: 'Prävention, Gesundheitsförderung',
-	},
-];
 
 export const BelegForm: FunctionComponent = () => {
 	const [form, setForm] = useState(new BelegFormControl());
