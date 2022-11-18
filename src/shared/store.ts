@@ -62,13 +62,13 @@ export const getMeta = () => {
 	};
 };
 
-export const saveBelege = () => {
+const saveBelege = () => {
 	APP.data.belege = Array.from(BELEGE.values());
 	SUBJECT.next(getBelege());
 	saveApp();
 };
 
-export const saveApp = () => {
+const saveApp = () => {
 	sessionStorage.setItem(IDENTIFIER, JSON.stringify(APP));
 	SUBJECT.next(getBelege());
 };
