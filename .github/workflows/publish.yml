@@ -77,7 +77,7 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@public-oss'
 
-      - name: Publish storybook
+      - name: Publish app
         run: npm publish --access restricted || true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
