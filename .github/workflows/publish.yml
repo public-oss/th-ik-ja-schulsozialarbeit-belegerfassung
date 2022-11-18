@@ -23,7 +23,7 @@ on:
 
 jobs:
   publish:
-    if: github.repository == 'public-oss/th-ik-ja-schulsozialarbeit-belegerfassung '
+    if: github.repository == 'public-oss/th-ik-ja-schulsozialarbeit-belegerfassung'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
