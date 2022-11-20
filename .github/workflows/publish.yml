@@ -78,6 +78,8 @@ jobs:
           scope: '@public-oss'
 
       - name: Publish app
-        run: npm publish --access restricted || true
+        run: |
+					npm unpublish @public-oss/th-ik-ja-belegerfassung -f
+					npm publish --access restricted || true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

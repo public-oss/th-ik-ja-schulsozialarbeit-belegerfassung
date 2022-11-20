@@ -1,6 +1,7 @@
-import { KolAbbr, KolAlert, KolInputCheckbox, KolKolibri, KolLink } from '@public-ui/react';
+import { KolAbbr, KolAlert, KolButton, KolInputCheckbox, KolInputFile, KolKolibri, KolLink } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { downloadAppData } from '../shared/store';
 import { Auswertung } from './Auswertung';
 import { Erfassung } from './Erfassung';
 
@@ -11,7 +12,49 @@ export const App: FunctionComponent = () => {
 
 	return (
 		<div className="bmf container mx-auto p-4 max-w-1280px grid gap-4">
-			<KolAlert>
+			<main className="grid gap-4">
+				<hr className="not-print w-80%" />
+				<div className="not-print grid sm:grid-cols-2 gap-4">
+					<div className="grid grid-cols-2 gap-2">
+						<KolButton
+							className="center m-auto"
+							_label="Speichern"
+							_on={{
+								onClick: downloadAppData,
+							}}
+						/>
+						<KolInputFile className="center m-auto" _disabled _hideLabel _id="" _on={{}}>
+							Laden
+						</KolInputFile>
+					</div>
+					<KolInputCheckbox
+						className="center m-auto"
+						_id="switch"
+						_on={{
+							onChange: (_event, value) => {
+								setView(value ? 'report' : 'form');
+							},
+						}}
+						_variant="switch"
+					>
+						{view === 'form' ? (
+							<>
+								<strong>Erfassung</strong> / Auswertung
+							</>
+						) : (
+							<>
+								Erfassung / <strong>Auswertung</strong>
+							</>
+						)}
+					</KolInputCheckbox>
+				</div>
+				<hr className="not-print w-80%" />
+				<Routes>
+					<Route path="/" element={view === 'report' ? <Auswertung /> : <Erfassung />} />
+				</Routes>
+			</main>
+			<hr className="not-print my-4 w-80%" />
+			<KolAlert className="not-print">
 				<p>
 					Diese Webanwendung ist unabhängig von öffentlichen Institutionen und zu Anschauungszwecken im{' '}
 					<KolLink _href="https://thueringen.de/styleguide/" _target="styleguide">
@@ -20,34 +63,7 @@ export const App: FunctionComponent = () => {
 					umgesetzt worden.
 				</p>
 			</KolAlert>
-			<main className="grid gap-4">
-				<hr className="w-80%" />
-				<KolInputCheckbox
-					className="center m-auto"
-					_id="switch"
-					_on={{
-						onChange: (_event, value) => {
-							setView(value ? 'report' : 'form');
-						},
-					}}
-					_type="switch"
-				>
-					{view === 'form' ? (
-						<>
-							<strong>Erfassung</strong> / Auswertung
-						</>
-					) : (
-						<>
-							Erfassung / <strong>Auswertung</strong>
-						</>
-					)}
-				</KolInputCheckbox>{' '}
-				<hr className="w-80%" />
-				<Routes>
-					<Route path="/" element={view === 'report' ? <Auswertung /> : <Erfassung />} />
-				</Routes>
-			</main>
-			<KolAlert _type="info">
+			<KolAlert className="not-print" _type="info">
 				<p>Diese Webanwendung setzt eine Excel-basierte Fachanwendung für die Belegerfassung der Schulsozialarbeiter:innen im Ilm-Kreis / Thüringen um.</p>
 				<p>
 					<strong>Motivation</strong>
@@ -82,8 +98,8 @@ export const App: FunctionComponent = () => {
 					öffentlich bereitgestellt.
 				</p>
 			</KolAlert>
-			<div className="mt-8 text-center">
-				<hr className="w-80%" />
+			<hr className="not-print my-4 w-80%" />
+			<div className="not-print text-center">
 				<span>
 					Unterstützt durch{' '}
 					<KolAbbr _title="Komponenten-Bibliothek für die Barrierefreiheit">

@@ -69,7 +69,7 @@ export const MetaForm: FunctionComponent = () => {
 	};
 
 	return (
-		<div className="grid gap-4">
+		<div className="not-print grid gap-4">
 			<KolForm _on={onForm}>
 				<div className="grid gap-4">
 					<div className="grid md:grid-cols-2 gap-4 text">

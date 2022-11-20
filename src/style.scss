@@ -16,3 +16,15 @@ kol-kolibri {
 	margin: 1em auto;
 	width: 100px;
 }
+
+@media screen {
+	.only-print {
+		display: none;
+	}
+}
+
+@media print {
+	.not-print {
+		display: none;
+	}
+}

@@ -21,9 +21,6 @@ export const getBelege = () => {
 };
 
 export const addBeleg = (beleg: Beleg) => {
-	if (BELEGE.has(beleg.nr)) {
-		throw new Error(`Die Belegnummer "${beleg.nr}" ist schon vergeben.`);
-	}
 	BELEGE.set(beleg.nr, beleg);
 	saveBelege();
 };
@@ -82,7 +79,19 @@ if (restoreApp) {
 		};
 		appStore.data.belege.forEach((beleg) => BELEGE.set(beleg.nr, beleg));
 	} catch (e) {}
-	// } else {
-	// 	(DATA as unknown as Beleg[]).forEach((beleg) => BELEGE.set(beleg.nr, beleg));
+} else {
+	(DATA as unknown as Beleg[]).forEach((beleg) => BELEGE.set(beleg.nr, beleg));
 }
 saveBelege();
+
+export const downloadAppData = () => {
+	const a = document.createElement('a');
+	document.body.appendChild(a);
+	a.style.display = 'none';
+	const blob = new Blob([JSON.stringify(APP)], { type: 'octet/stream' }),
+		url = window.URL.createObjectURL(blob);
+	a.href = url;
+	a.download = `belegerfassung-${APP.meta.school}-${APP.meta.author}-${new Date().toISOString()}.json`;
+	a.click();
+	window.URL.revokeObjectURL(url);
+};

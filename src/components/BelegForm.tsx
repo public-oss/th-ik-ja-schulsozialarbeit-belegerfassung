@@ -1,12 +1,27 @@
 import { AbstractFormatter, AbstractValidator, FormatHandler, FormControl, InputControl, RequiredValidator, ValidationHandler } from '@leanup/form';
 import { LeanInputAdapter } from '@leanup/kolibri-react';
-import { Option, SelectOption } from '@public-ui/components';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
+import { EventCallback } from '@public-ui/components/dist/types/types/callbacks';
 import { Iso8601 } from '@public-ui/components/dist/types/types/input/iso8601';
-import { KolAbbr, KolAlert, KolButton, KolForm, KolInputDate, KolInputNumber, KolInputRadio, KolInputText, KolSelect } from '@public-ui/react';
+import {
+	KolAbbr,
+	KolAlert,
+	KolButton,
+	KolCard,
+	KolForm,
+	KolHeading,
+	KolInputDate,
+	KolInputNumber,
+	KolInputRadio,
+	KolInputText,
+	KolModal,
+	KolSelect,
+} from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
 import { ARTEN, AUS_EIN } from '../shared/constants';
-import { addBeleg, getAvailableReasons, getAvailableReceivers } from '../shared/store';
+import { addBeleg, getBelege, getAvailableReasons, getAvailableReceivers } from '../shared/store';
+import { Beleg } from '../shared/types';
+import { BelegList } from './BelegList';
 
 const TODAY = new Date(Date.now()).toISOString().slice(0, 10) as Iso8601;
 
@@ -84,6 +99,7 @@ export const BelegForm: FunctionComponent = () => {
 	const [saved, setSaved] = useState(false);
 	const [touched, setTouched] = useState(false);
 	const [error, setError] = useState('');
+	const [activeElement, setActiveElement] = useState<HTMLElement | null>(null);
 
 	const reset = () => {
 		setError('');
@@ -91,89 +107,135 @@ export const BelegForm: FunctionComponent = () => {
 		setTouched(false);
 	};
 
+	const saveBeleg = () => {
+		addBeleg(form.getData() as unknown as Beleg);
+		setSaved(true);
+		reset();
+	};
+
 	const onForm: KoliBriFormCallbacks = {
-		onReset: (...args) => {
-			console.log('reset', args);
+		onReset: () => {
 			setSaved(false);
 			reset();
 		},
-		onSubmit: (...args) => {
-			console.log('submit', args);
+		onSubmit: (event: SubmitEvent) => {
 			setError('');
 			setSaved(false);
 			setTouched(true);
 			if (form.valid) {
-				try {
-					addBeleg(form.getData());
-					setSaved(true);
-					reset();
-				} catch (e) {
-					setError((e as Error).message);
+				form.disabled = true;
+				const beleg: Beleg = form.getData();
+				if (getBelege().has(beleg.nr)) {
+					setActiveElement(event.submitter);
+				} else {
+					saveBeleg();
 				}
 			}
 		},
 	};
 
+	const onEdit = (beleg: Beleg) => {
+		console.log(beleg);
+		form.setData(beleg);
+		const input = form.getInput('amount');
+		if (input) {
+			console.log(input);
+			input.value = beleg.amount;
+		}
+	};
+
 	return (
-		<div className="grid gap-4">
-			<KolForm _on={onForm}>
-				<div className="grid gap-4">
-					<div className="grid md:grid-cols-2 gap-4 text">
-						<LeanInputAdapter _control={form.getInput('payment') as InputControl}>
-							<KolInputRadio _id="payment" _list={AUS_EIN} _orientation="horizontal" _touched={touched}>
-								Zahlung
-							</KolInputRadio>
-						</LeanInputAdapter>
-						<div></div>
-						<LeanInputAdapter _control={form.getInput('kind') as InputControl}>
-							<KolSelect _id="kind" _list={ARTEN} _touched={touched}>
-								Art
-							</KolSelect>
-						</LeanInputAdapter>
-						<LeanInputAdapter _control={form.getInput('nr') as InputControl}>
-							<KolInputText _id="nr" _touched={touched}>
-								Belegnummer
-							</KolInputText>
-						</LeanInputAdapter>
-						<LeanInputAdapter _control={form.getInput('date') as InputControl}>
-							<KolInputDate _id="nr" _max={TODAY} _touched={touched} _type="date">
-								<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
-									Zahlungsdatum
-								</KolAbbr>
-							</KolInputDate>
-						</LeanInputAdapter>
-						<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
-							<KolInputNumber _id="nr" _touched={touched}>
-								Betrag
-							</KolInputNumber>
-						</LeanInputAdapter>
-						<LeanInputAdapter _control={form.getInput('reason') as InputControl}>
-							<KolInputText _id="nr" _list={getAvailableReasons()} _touched={touched}>
-								Zahlungsgrund/Verwendungszweck
-							</KolInputText>
-						</LeanInputAdapter>
-						<LeanInputAdapter _control={form.getInput('receiver') as InputControl}>
-							<KolInputText _id="nr" _list={getAvailableReceivers()} _touched={touched}>
-								Zahlungsempfänger
-							</KolInputText>
-						</LeanInputAdapter>
+		<>
+			<div className="not-print grid gap-4">
+				<KolForm _on={onForm}>
+					<div className="grid gap-4">
+						<div className="grid md:grid-cols-2 gap-4">
+							<LeanInputAdapter _control={form.getInput('payment') as InputControl}>
+								<KolInputRadio _id="payment" _list={AUS_EIN} _orientation="horizontal" _touched={touched}>
+									Zahlung
+								</KolInputRadio>
+							</LeanInputAdapter>
+							<div></div>
+							<LeanInputAdapter _control={form.getInput('kind') as InputControl}>
+								<KolSelect _id="kind" _list={ARTEN} _touched={touched}>
+									Art
+								</KolSelect>
+							</LeanInputAdapter>
+							<LeanInputAdapter _control={form.getInput('nr') as InputControl}>
+								<KolInputText _id="nr" _touched={touched}>
+									Belegnummer
+								</KolInputText>
+							</LeanInputAdapter>
+							<LeanInputAdapter _control={form.getInput('date') as InputControl}>
+								<KolInputDate _id="nr" _max={TODAY} _touched={touched} _type="date">
+									<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
+										Zahlungsdatum
+									</KolAbbr>
+								</KolInputDate>
+							</LeanInputAdapter>
+							<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
+								<KolInputNumber _id="nr" _touched={touched}>
+									Betrag
+								</KolInputNumber>
+							</LeanInputAdapter>
+							<LeanInputAdapter _control={form.getInput('reason') as InputControl}>
+								<KolInputText _id="nr" _list={getAvailableReasons()} _touched={touched}>
+									Zahlungsgrund/Verwendungszweck
+								</KolInputText>
+							</LeanInputAdapter>
+							<LeanInputAdapter _control={form.getInput('receiver') as InputControl}>
+								<KolInputText _id="nr" _list={getAvailableReceivers()} _touched={touched}>
+									Zahlungsempfänger
+								</KolInputText>
+							</LeanInputAdapter>
+						</div>
+						{saved && (
+							<KolAlert _alert _heading="Beleg gespeichert" _type="success" _variant="card">
+								Der Beleg wurde erfolgreich gespeichert.
+							</KolAlert>
+						)}
+						{error.length > 0 && (
+							<KolAlert _alert _heading="Fehler" _type="error" _variant="card">
+								{error}
+							</KolAlert>
+						)}
+						<div className="grid md:flex md:gap-4 md:justify-end ">
+							<KolButton className="w-full md:w-10em" _label="Speichern" _type="submit" _variant="primary" />
+							<KolButton className="w-full md:w-10em" _label="Zurücksetzen" _type="reset" />
+						</div>
 					</div>
-					{saved && (
-						<KolAlert _alert _heading="Beleg gespeichert" _type="success" _variant="card">
-							Der Beleg wurde erfolgreich gespeichert.
-						</KolAlert>
-					)}
-					{error.length > 0 && (
-						<KolAlert _alert _heading="Fehler" _type="error" _variant="card">
-							{error}
-						</KolAlert>
-					)}
-					<div className="grid md:flex md:gap-4 md:justify-end ">
-						<KolButton className="w-full md:w-10em" _label="Speichern" _type="submit" _variant="primary" />
-						<KolButton className="w-full md:w-10em" _label="Zurücksetzen" _type="reset" />
+				</KolForm>
+			</div>
+			<KolHeading _level={2}>Belegliste</KolHeading>
+			<BelegList edit={onEdit} />
+			<KolModal _width="500px" _ariaLabel="Beleg überschreiben?" _activeElement={activeElement}>
+				<KolCard _hasFooter _heading="Beleg überschreiben?">
+					<p className="p-2" slot="content">
+						Es ist schon ein Beleg mit der Belegnummer vorhanden. Wollen Sie diesen wirklich überschreiben?
+					</p>
+					<div className="flex content-end gap-2" slot="footer">
+						<KolButton
+							_label="Ja"
+							_on={{
+								onClick: () => {
+									saveBeleg();
+									setActiveElement(null);
+								},
+							}}
+							_variant="primary"
+						></KolButton>
+						<KolButton
+							_label="Nein"
+							_on={{
+								onClick: () => {
+									setActiveElement(null);
+								},
+							}}
+							_variant="secondary"
+						></KolButton>
 					</div>
-				</div>
-			</KolForm>
-		</div>
+				</KolCard>
+			</KolModal>
+		</>
 	);
 };

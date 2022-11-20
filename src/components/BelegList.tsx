@@ -4,7 +4,11 @@ import { getRoot } from '../react-roots';
 import { getBelege, removeBeleg, subscribeBelege } from '../shared/store';
 import { Beleg } from '../shared/types';
 
-export const BelegList: FunctionComponent = () => {
+type Props = {
+	edit: (beleg: Beleg) => void;
+};
+
+export const BelegList: FunctionComponent<Props> = (props) => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());
 
 	const belege$ = subscribeBelege(setBelege);
@@ -67,7 +71,7 @@ export const BelegList: FunctionComponent = () => {
 						{
 							label: 'Betrag',
 							key: 'amount',
-							render: (el, _cell, tupel, data) => {
+							render: (el, _cell, tupel) => {
 								getRoot(el).render(
 									<span
 										style={{
@@ -96,7 +100,17 @@ export const BelegList: FunctionComponent = () => {
 							render: (el, _cell, tupel) => {
 								getRoot(el).render(
 									<div style={{ display: 'flex', gap: '.5em', justifyContent: 'center' }}>
-										<KolButton _disabled _icon="fa-solid fa-edit" _iconOnly _label="Bearbeiten" _variant="secondary"></KolButton>
+										<KolButton
+											_icon="fa-solid fa-edit"
+											_iconOnly
+											_on={{
+												onClick: () => {
+													props.edit(tupel as Beleg);
+												},
+											}}
+											_label="Bearbeiten"
+											_variant="secondary"
+										></KolButton>
 										<KolButton
 											_icon="fa-solid fa-trash"
 											_on={{
