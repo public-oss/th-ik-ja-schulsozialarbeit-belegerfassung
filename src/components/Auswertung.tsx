@@ -87,7 +87,7 @@ export const Auswertung: FunctionComponent = () => {
 					_id="year"
 					_list={getYears()}
 					_on={{
-						onChange: (_event, values) => {
+						onChange: (_event, values: number[]) => {
 							setYear(values[0]);
 						},
 					}}
@@ -98,7 +98,7 @@ export const Auswertung: FunctionComponent = () => {
 					_id="kind"
 					_list={ARTEN}
 					_on={{
-						onChange: (_event, values) => {
+						onChange: (_event, values: Kind[]) => {
 							setKind(values[0]);
 						},
 					}}
