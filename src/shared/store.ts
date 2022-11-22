@@ -79,8 +79,8 @@ if (restoreApp) {
 		};
 		appStore.data.belege.forEach((beleg) => BELEGE.set(beleg.nr, beleg));
 	} catch (e) {}
-} else {
-	(DATA as unknown as Beleg[]).forEach((beleg) => BELEGE.set(beleg.nr, beleg));
+	// } else {
+	// 	(DATA as unknown as Beleg[]).forEach((beleg) => BELEGE.set(beleg.nr, beleg));
 }
 saveBelege();
 
