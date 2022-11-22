@@ -107,12 +107,11 @@ export const loadAppData = (files: FileList) => {
 					...(JSON.parse(content) as App),
 				};
 				saveApp();
+				window.removeEventListener('beforeunload', downloadAppData);
 				window.location.reload();
 			})
 			.catch(console.warn);
 	}
 };
 
-window.addEventListener('beforeunload', () => {
-	downloadAppData();
-});
+window.addEventListener('beforeunload', downloadAppData);
