@@ -3,7 +3,7 @@ import { App, Beleg } from './types';
 import DATA from '../data/belege.json';
 
 const IDENTIFIER = 'mira-app';
-const APP: App = {
+let APP: App = {
 	data: {
 		belege: [],
 	},
@@ -95,3 +95,24 @@ export const downloadAppData = () => {
 	a.click();
 	window.URL.revokeObjectURL(url);
 };
+
+export const loadAppData = (files: FileList) => {
+	if (files instanceof FileList && files.item(0) instanceof File) {
+		files
+			.item(0)
+			?.text()
+			.then((content: string) => {
+				APP = {
+					...APP,
+					...(JSON.parse(content) as App),
+				};
+				saveApp();
+				window.location.reload();
+			})
+			.catch(console.warn);
+	}
+};
+
+window.addEventListener('beforeunload', () => {
+	downloadAppData();
+});

@@ -1,7 +1,7 @@
 import { KolAbbr, KolAlert, KolButton, KolInputCheckbox, KolInputFile, KolKolibri, KolLink } from '@public-ui/react';
 import React, { FunctionComponent, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { downloadAppData } from '../shared/store';
+import { downloadAppData, loadAppData } from '../shared/store';
 import { Auswertung } from './Auswertung';
 import { Erfassung } from './Erfassung';
 
@@ -12,18 +12,29 @@ export const App: FunctionComponent = () => {
 
 	return (
 		<div className="bmf container mx-auto p-4 max-w-1280px grid gap-4">
-			<main className="grid gap-4">
-				<hr className="not-print w-80%" />
+			<main className="grid gap-2">
+				<hr className="not-print" />
 				<div className="not-print grid sm:grid-cols-2 gap-4">
 					<div className="grid grid-cols-2 gap-2">
 						<KolButton
 							className="center m-auto"
 							_label="Speichern"
+							_id="speichern"
 							_on={{
 								onClick: downloadAppData,
 							}}
 						/>
-						<KolInputFile className="center m-auto" _disabled _hideLabel _id="" _on={{}}>
+						<KolInputFile
+							className="center m-auto"
+							_hideLabel
+							_id="laden"
+							_on={{
+								onChange: (_event: Event, value: unknown) => {
+									console.log(value);
+									loadAppData(value as FileList);
+								},
+							}}
+						>
 							Laden
 						</KolInputFile>
 					</div>
@@ -35,7 +46,7 @@ export const App: FunctionComponent = () => {
 								setView(value ? 'report' : 'form');
 							},
 						}}
-						_variant="switch"
+						_type="switch"
 					>
 						{view === 'form' ? (
 							<>
@@ -48,12 +59,12 @@ export const App: FunctionComponent = () => {
 						)}
 					</KolInputCheckbox>
 				</div>
-				<hr className="not-print w-80%" />
+				<hr className="not-print" />
 				<Routes>
 					<Route path="/" element={view === 'report' ? <Auswertung /> : <Erfassung />} />
 				</Routes>
 			</main>
-			<hr className="not-print my-4 w-80%" />
+			<hr className="not-print my-4" />
 			<KolAlert className="not-print">
 				<p>
 					Diese Webanwendung ist unabhängig von öffentlichen Institutionen und zu Anschauungszwecken im{' '}
@@ -98,7 +109,7 @@ export const App: FunctionComponent = () => {
 					öffentlich bereitgestellt.
 				</p>
 			</KolAlert>
-			<hr className="not-print my-4 w-80%" />
+			<hr className="not-print my-4" />
 			<div className="not-print text-center">
 				<span>
 					Unterstützt durch{' '}
