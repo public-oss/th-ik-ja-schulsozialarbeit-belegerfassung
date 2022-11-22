@@ -19,6 +19,8 @@ export const BelegList: FunctionComponent<Props> = (props) => {
 		};
 	}, []);
 
+	console.log(JSON.parse(JSON.stringify(Array.from(belege.values()))));
+
 	return (
 		<KolTable
 			_caption="Belegliste"
@@ -46,14 +48,14 @@ export const BelegList: FunctionComponent<Props> = (props) => {
 						{
 							label: 'Zahlung',
 							key: 'payment',
-							render: (el, _cell, tupel) => {
-								getRoot(el).render(
-									<kol-span
-										_icon={`fa-solid fa-arrow-${tupel.payment === 'in' ? 'right' : 'left'}`}
-										_label={tupel.payment === 'in' ? 'Einzahlung' : 'Auszahlung'}
-									></kol-span>
-								);
-							},
+							// render: (el, _cell, tupel) => {
+							// 	getRoot(el).render(
+							// 		<kol-span
+							// 			_icon={`fa-solid fa-arrow-${tupel.payment === 'in' ? 'right' : 'left'}`}
+							// 			_label={tupel.payment === 'in' ? 'Einzahlung' : 'Auszahlung'}
+							// 		></kol-span>
+							// 	);
+							// },
 						},
 						{
 							label: 'Art',
@@ -97,40 +99,39 @@ export const BelegList: FunctionComponent<Props> = (props) => {
 							label: 'Aktionen',
 							key: '',
 							textAlign: 'center',
-							render: (el, _cell, tupel) => {
-								getRoot(el).render(
-									<div style={{ display: 'flex', gap: '.5em', justifyContent: 'center' }}>
-										<KolButton
-											_icon="fa-solid fa-edit"
-											_iconOnly
-											_on={{
-												onClick: () => {
-													props.edit(tupel as Beleg);
-												},
-											}}
-											_label="Bearbeiten"
-											_variant="secondary"
-										></KolButton>
-										<KolButton
-											_icon="fa-solid fa-trash"
-											_on={{
-												onClick: () => {
-													removeBeleg(tupel as Beleg);
-												},
-											}}
-											_iconOnly
-											_label="Löschen"
-											_variant="secondary"
-										></KolButton>
-									</div>
-								);
-							},
+							// render: (el, _cell, tupel) => {
+							// 	getRoot(el).render(
+							// 		<div style={{ display: 'flex', gap: '.5em', justifyContent: 'center' }}>
+							// 			<KolButton
+							// 				_icon="fa-solid fa-edit"
+							// 				_iconOnly
+							// 				_on={{
+							// 					onClick: () => {
+							// 						props.edit(tupel as Beleg);
+							// 					},
+							// 				}}
+							// 				_label="Bearbeiten"
+							// 				_variant="secondary"
+							// 			></KolButton>
+							// 			<KolButton
+							// 				_icon="fa-solid fa-trash"
+							// 				_on={{
+							// 					onClick: () => {
+							// 						removeBeleg(tupel as Beleg);
+							// 					},
+							// 				}}
+							// 				_iconOnly
+							// 				_label="Löschen"
+							// 				_variant="secondary"
+							// 			></KolButton>
+							// 		</div>
+							// 	);
+							// },
 						},
 					],
 				],
 			}}
 			_data={Array.from(belege.values())}
-			_pagination
 			_minWidth="75em"
 			className="contents"
 		></KolTable>
