@@ -71,7 +71,7 @@
 		"eslint-plugin-react": "7.31.11",
 		"husky": "8.0.2",
 		"nightwatch-axe-verbose": "2.0.3",
-		"npm-check-updates": "16.4.1",
+		"npm-check-updates": "16.4.2",
 		"playwright": "1.28.0",
 		"rimraf": "3.0.2",
 		"ts-prune": "0.10.3",
