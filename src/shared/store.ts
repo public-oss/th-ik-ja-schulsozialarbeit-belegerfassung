@@ -2,6 +2,8 @@ import { Subject, Subscription } from 'rxjs';
 import { App, Beleg } from './types';
 import DATA from '../data/belege.json';
 
+let hasChanges = false;
+
 const IDENTIFIER = 'mira-app';
 let APP: App = {
 	data: {
@@ -66,6 +68,7 @@ const saveBelege = () => {
 };
 
 const saveApp = () => {
+	hasChanges = true;
 	sessionStorage.setItem(IDENTIFIER, JSON.stringify(APP));
 	SUBJECT.next(getBelege());
 };
@@ -83,6 +86,7 @@ if (restoreApp) {
 	// 	(DATA as unknown as Beleg[]).forEach((beleg) => BELEGE.set(beleg.nr, beleg));
 }
 saveBelege();
+hasChanges = false;
 
 export const downloadAppData = () => {
 	const a = document.createElement('a');
@@ -96,6 +100,12 @@ export const downloadAppData = () => {
 	window.URL.revokeObjectURL(url);
 };
 
+const wouldYouSave = (e: BeforeUnloadEvent) => {
+	if (hasChanges) {
+		e.returnValue = 'Wollen Sie wirklich ohne Speichen das Fenster/Tab schließen?';
+	}
+};
+
 export const loadAppData = (files: FileList) => {
 	if (files instanceof FileList && files.item(0) instanceof File) {
 		files
@@ -107,11 +117,12 @@ export const loadAppData = (files: FileList) => {
 					...(JSON.parse(content) as App),
 				};
 				saveApp();
-				window.removeEventListener('beforeunload', downloadAppData);
+				hasChanges = false;
+				window.removeEventListener('beforeunload', wouldYouSave);
 				window.location.reload();
 			})
 			.catch(console.warn);
 	}
 };
 
-window.addEventListener('beforeunload', downloadAppData);
+window.addEventListener('beforeunload', wouldYouSave);
