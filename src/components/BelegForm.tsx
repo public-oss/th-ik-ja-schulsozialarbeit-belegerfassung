@@ -146,10 +146,10 @@ export const BelegForm: FunctionComponent = () => {
 
 	return (
 		<>
-			<div className="not-print grid gap-4">
+			<div className="not-print grid gap-2">
 				<KolForm _on={onForm}>
-					<div className="grid gap-4">
-						<div className="grid md:grid-cols-2 gap-4">
+					<div className="grid gap-2">
+						<div className="grid md:grid-cols-2 gap-2">
 							<LeanInputAdapter _control={form.getInput('payment') as InputControl}>
 								<KolInputRadio _id="payment" _list={AUS_EIN} _orientation="horizontal" _touched={touched}>
 									Zahlung
@@ -199,8 +199,8 @@ export const BelegForm: FunctionComponent = () => {
 								{error}
 							</KolAlert>
 						)}
-						<div className="grid md:flex md:gap-4 md:justify-end ">
-							<KolButton className="w-full md:w-10em" _label="Speichern" _type="submit" _variant="primary" />
+						<div className="grid md:flex md:gap-2 md:justify-end ">
+							<KolButton className="w-full md:w-10em" _icon="fa-solid fa-floppy-disk" _label="Speichern" _type="submit" _variant="primary" />
 							<KolButton className="w-full md:w-10em" _label="Zurücksetzen" _type="reset" />
 						</div>
 					</div>

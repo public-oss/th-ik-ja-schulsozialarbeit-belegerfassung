@@ -1,5 +1,5 @@
 import { SelectOption } from '@public-ui/components';
-import { KolHeading, KolSelect, KolTable } from '@public-ui/react';
+import { KolHeading, KolSelect, KolButton, KolTable } from '@public-ui/react';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { getRoot } from '../react-roots';
 import { ARTEN } from '../shared/constants';
@@ -82,7 +82,7 @@ export const Auswertung: FunctionComponent = () => {
 				</div> */}
 				<KolHeading>Belegauswertung</KolHeading>
 			</div>
-			<div className="not-print grid md:grid-cols-2 gap-4">
+			<div className="not-print grid md:grid-cols-[1fr_1fr_auto]  contents-end items-end gap-2">
 				<KolSelect
 					_id="year"
 					_list={getYears()}
@@ -106,8 +106,21 @@ export const Auswertung: FunctionComponent = () => {
 				>
 					Art
 				</KolSelect>
+				<div className="flex gap-2">
+					<KolButton
+						className="w-full md:w-10em"
+						_on={{
+							onClick: () => {
+								window.print();
+							},
+						}}
+						_icon="fa-solid fa-printer"
+						_label="Drucken"
+					/>
+					<KolButton className="w-full md:w-10em" _icon="fa-solid fa-download" _label="Herunterladen" _disabled />
+				</div>
 			</div>
-			<div className="only-print grid md:grid-cols-2 gap-4">
+			<div className="only-print grid md:grid-cols-2 gap-2">
 				<div>
 					<strong>Schule:</strong> {meta.school}
 				</div>
@@ -173,7 +186,8 @@ export const Auswertung: FunctionComponent = () => {
 					],
 				}}
 				_data={Array.from(belege.values())}
-				className="printable"
+				_minWidth="75em"
+				className="printable contents"
 			></KolTable>
 		</>
 	);

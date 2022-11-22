@@ -22,7 +22,7 @@ export const Erfassung: FunctionComponent = () => {
 			<KolHeading className="not-print" _level={2}>
 				Beleg erfassen
 			</KolHeading>
-			<div className="only-print grid md:grid-cols-2 gap-4">
+			<div className="only-print grid md:grid-cols-2 gap-2">
 				<div>
 					<strong>Schule:</strong> {meta.school}
 				</div>

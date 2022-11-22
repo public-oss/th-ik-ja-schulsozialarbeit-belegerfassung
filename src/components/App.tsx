@@ -11,33 +11,33 @@ export const App: FunctionComponent = () => {
 	const [view, setView] = useState<View>('form');
 
 	return (
-		<div className="bmf container mx-auto p-4 max-w-1280px grid gap-4">
+		<div className="bmf container mx-auto p-4 max-w-1280px grid gap-2">
 			<main className="grid gap-2">
 				<hr className="not-print" />
-				<div className="not-print grid sm:grid-cols-2 gap-4">
-					<div className="grid grid-cols-2 gap-2">
-						<KolButton
-							className="center m-auto"
-							_label="Speichern"
-							_id="speichern"
-							_on={{
-								onClick: downloadAppData,
-							}}
-						/>
-						<KolInputFile
-							className="center m-auto"
-							_hideLabel
-							_id="laden"
-							_on={{
-								onChange: (_event: Event, value: unknown) => {
-									console.log(value);
-									loadAppData(value as FileList);
-								},
-							}}
-						>
-							Laden
-						</KolInputFile>
-					</div>
+				<div className="not-print grid sm:grid-cols-2 md:grid-cols-3 gap-2">
+					<KolInputFile
+						className="center m-auto"
+						_hideLabel
+						_id="laden"
+						_on={{
+							onChange: (_event: Event, value: unknown) => {
+								console.log(value);
+								loadAppData(value as FileList);
+							},
+						}}
+					>
+						Öffnen
+					</KolInputFile>
+					<KolButton
+						className="center m-auto"
+						_label="Herunterladen"
+						_icon="fa-solid fa-download"
+						_id="speichern"
+						_on={{
+							onClick: downloadAppData,
+						}}
+						_variant="primary"
+					/>
 					<KolInputCheckbox
 						className="center m-auto"
 						_id="switch"
