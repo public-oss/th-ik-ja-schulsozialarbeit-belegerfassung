@@ -98,6 +98,7 @@ export const downloadAppData = () => {
 	a.download = `belegerfassung-${APP.meta.school}-${APP.meta.author}-${new Date().toISOString()}.json`;
 	a.click();
 	window.URL.revokeObjectURL(url);
+	hasChanges = false;
 };
 
 const wouldYouSave = (e: BeforeUnloadEvent) => {
