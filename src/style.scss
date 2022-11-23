@@ -1,0 +1,40 @@
+* {
+	font-family: var(--th-font-family);
+}
+
+hr {
+	background-color: gray;
+	height: 1px;
+	width: 80%;
+}
+
+p {
+	margin: 0;
+	text-align: justify;
+}
+
+p+p {
+	margin-top: .75em;
+}
+
+kol-kolibri {
+	display: block;
+	margin: 1em auto;
+	width: 100px;
+}
+
+@media screen {
+	.only-print {
+		display: none;
+	}
+
+	kol-table {
+		display: contents;
+	}
+}
+
+@media print {
+	.not-print {
+		display: none;
+	}
+}
