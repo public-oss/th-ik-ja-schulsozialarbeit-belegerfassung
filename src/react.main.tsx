@@ -6,14 +6,10 @@ import { App } from './components/App';
 
 import { defineCustomElements as leanup } from '@leanup/kolibri-components/dist/loader';
 import { defineCustomElements } from '@public-ui/components/dist/loader';
+import { TH } from '@public-ui/themes';
 import { register } from '@public-ui/core';
-import { BMF } from '@public-ui/themes';
 
-register(BMF, [defineCustomElements, leanup], {
-	theme: {
-		name: 'th',
-	},
-})
+register(TH, [defineCustomElements, leanup])
 	.then(() => {
 		const htmlElement: HTMLElement | null = document.querySelector<HTMLDivElement>('div#app');
 		if (htmlElement instanceof HTMLElement) {
