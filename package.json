@@ -63,7 +63,7 @@
 		"@types/react-dom": "18.0.9",
 		"@types/react-router": "5.1.19",
 		"@types/react-router-dom": "5.3.3",
-		"@unocss/preset-mini": "0.46.5",
+		"@unocss/preset-mini": "0.47.5",
 		"@unocss/webpack": "0.46.5",
 		"chromedriver": "107.0.3",
 		"depcheck": "1.4.3",
