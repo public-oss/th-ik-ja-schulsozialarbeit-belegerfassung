@@ -76,10 +76,10 @@ export const Auswertung: FunctionComponent = () => {
 	return (
 		<>
 			<div className="grid sm:grid-cols-2 items-center align-center">
-				{/* <div className="sm:text-right sm:order-2">
-					<img alt="Logo Freistaat Thüringen" className="pt-4 pr-4" src="https://thueringen.de/styleguide/freistaat-thueringen-logo.svg" width="200" />
-					<img alt="Logo Ilm-Kreis in Thüringen" className="pt-4 pr-4" src="https://www.ilm-kreis.de/media/custom/2778_1182_1_g.PNG" width="200" />
-				</div> */}
+				<div className="sm:text-right sm:order-2">
+					{/* <img alt="Logo Freistaat Thüringen" className="pt-4 pr-4" src="https://thueringen.de/styleguide/freistaat-thueringen-logo.svg" width="200" /> */}
+					{/* <img alt="Logo Ilm-Kreis in Thüringen" className="pt-4 pr-4" src="https://www.ilm-kreis.de/media/custom/2778_1182_1_g.PNG" width="200" /> */}
+				</div>
 				<KolHeading>Belegauswertung</KolHeading>
 			</div>
 			<div className="not-print grid md:grid-cols-[1fr_1fr_auto]  contents-end items-end gap-2">
