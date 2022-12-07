@@ -129,7 +129,7 @@ export const BelegList: FunctionComponent<Props> = (props) => {
 					],
 				],
 			}}
-			_data={Array.from(belege.values())}
+			_data={[...Array.from(belege.values())]}
 			_minWidth="75em"
 			_pagination
 		></KolTable>

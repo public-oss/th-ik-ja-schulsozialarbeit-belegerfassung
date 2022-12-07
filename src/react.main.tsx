@@ -6,7 +6,7 @@ import { App } from './components/App';
 
 import { defineCustomElements as leanup } from '@leanup/kolibri-components/dist/loader';
 import { defineCustomElements } from '@public-ui/components/dist/loader';
-import { TH } from '@public-ui/themes';
+import { TH } from '@public-oss/kolibri-themes';
 import { register } from '@public-ui/core';
 
 register(TH, [defineCustomElements, leanup])

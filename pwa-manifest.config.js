@@ -5,7 +5,7 @@ module.exports = {
 	short_name: 'Belegerfassung',
 	description: '...',
 	lang: 'de-DE',
-	start_url: '/',
+	start_url: '/th-ik-ja-belegerfassung/',
 	display: 'fullscreen',
 	orientation: 'any',
 	theme_color: '#fff',
