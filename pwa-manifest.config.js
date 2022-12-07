@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-	publicPath: '/',
+	publicPath: '/th-ik-ja-belegerfassung/',
 	name: 'Belegerfassung | Public-OSS',
 	short_name: 'Belegerfassung',
 	description: '...',
