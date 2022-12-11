@@ -119,7 +119,7 @@ export const App: FunctionComponent = () => {
 					<p>
 						<strong>Lizenz</strong>
 						<br />
-						Der Quellcode der Fachanwendung wurde unter der Lizenz Lizenz{' '}
+						Der Quellcode der Fachanwendung wurde unter der Lizenz{' '}
 						<KolLink _href="https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12" _target="europa">
 							EUPL v1.2
 						</KolLink>{' '}
