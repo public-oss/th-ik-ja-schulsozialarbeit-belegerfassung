@@ -21,14 +21,14 @@ let APP: App = {
 		version: '1.0.0',
 	},
 };
-const BELEGE: Map<string, Beleg> = new Map();
+const BELEGE: Map<number, Beleg> = new Map();
 const restoreApp = localStorage.getItem(IDENTIFIER);
 
 export const getBelege = () => {
-	return new Map<string, Beleg>(BELEGE);
+	return new Map<number, Beleg>(BELEGE);
 };
 
-const sortBelege = (belege: Map<string, Beleg>) => {
+const sortBelege = (belege: Map<number, Beleg>) => {
 	const list = Array.from(belege.values());
 	list.sort((a, b) => {
 		if (a.date < b.date) {
@@ -40,7 +40,12 @@ const sortBelege = (belege: Map<string, Beleg>) => {
 		return 0;
 	});
 	belege.clear();
-	list.forEach((beleg) => belege.set(beleg.nr, beleg));
+	list.forEach((beleg) => {
+		beleg.cash = beleg.cash === true;
+		beleg.nr = parseInt(beleg.nr as unknown as string);
+		beleg.amount = parseFloat(beleg.amount as unknown as string);
+		belege.set(beleg.nr, beleg);
+	});
 };
 
 export const addBeleg = (beleg: Beleg) => {
@@ -66,8 +71,8 @@ export const getAvailableReceivers = (): string[] => {
 	return getAvailables((beleg) => beleg.receiver);
 };
 
-const SUBJECT = new Subject<Map<string, Beleg>>();
-export const subscribeBelege = (next: (value: Map<string, Beleg>) => void): Subscription => {
+const SUBJECT = new Subject<Map<number, Beleg>>();
+export const subscribeBelege = (next: (value: Map<number, Beleg>) => void): Subscription => {
 	return SUBJECT.subscribe(next);
 };
 

@@ -9,6 +9,7 @@ import {
 	KolCard,
 	KolForm,
 	KolHeading,
+	KolInputCheckbox,
 	KolInputDate,
 	KolInputNumber,
 	KolInputRadio,
@@ -62,6 +63,7 @@ class BelegFormControl extends FormControl {
 		super('beleg');
 
 		this.addControl(new InputControl('payment', { mandatory: true }));
+		this.addControl(new InputControl('cash', { mandatory: true }));
 		this.addControl(new InputControl('kind', { mandatory: true }));
 		this.addControl(new InputControl('nr', { mandatory: true }));
 		this.addControl(new InputControl('date', { mandatory: true }));
@@ -69,23 +71,36 @@ class BelegFormControl extends FormControl {
 		this.addControl(new InputControl('reason', { mandatory: true }));
 		this.addControl(new InputControl('receiver', { mandatory: true }));
 
-		this.getInput('kind')?.setFormatHandler(formatHandler);
 		this.getInput('nr')?.setValidationHandler(validationHandler);
 		this.getInput('date')?.setValidationHandler(validationHandler);
 		this.getInput('amount')?.setValidationHandler(validationHandlerMin);
 		this.getInput('reason')?.setValidationHandler(validationHandler);
 		this.getInput('receiver')?.setValidationHandler(validationHandler);
 
+		this.getInput('kind')?.setFormatHandler(formatHandler);
+		this.getInput('nr')?.setFormatHandler(numberFormatHandler);
 		this.getInput('amount')?.setFormatHandler(numberFormatHandler);
 
 		this.reset();
 	}
 
+	private getNextNr = () => {
+		let max = 0;
+		getBelege().forEach((beleg) => {
+			if (max < beleg.nr) {
+				console.log(max, beleg.nr);
+				max = beleg.nr;
+			}
+		});
+		return max + 1;
+	};
+
 	public readonly reset = () => {
 		this.setData({
 			payment: 'out',
+			cash: false,
 			kind: 0,
-			nr: '',
+			nr: this.getNextNr(),
 			date: TODAY,
 			amount: 0.0,
 			reason: '',
@@ -94,6 +109,8 @@ class BelegFormControl extends FormControl {
 		this.disabled = false;
 	};
 }
+
+let editBeleg: Beleg | null = null;
 
 export const BelegForm: FunctionComponent = () => {
 	const [form, setForm] = useState(new BelegFormControl());
@@ -111,8 +128,15 @@ export const BelegForm: FunctionComponent = () => {
 	};
 
 	const saveBeleg = () => {
-		addBeleg(form.getData() as unknown as Beleg);
+		const beleg: Beleg = form.getData();
+		console.log(editBeleg);
+		addBeleg(beleg);
+		if (editBeleg?.nr !== beleg.nr) {
+			console.log(editBeleg);
+			removeBeleg(editBeleg as Beleg);
+		}
 		setSaved(true);
+		editBeleg = null;
 		reset();
 	};
 
@@ -128,21 +152,22 @@ export const BelegForm: FunctionComponent = () => {
 			if (form.valid) {
 				form.disabled = true;
 				const beleg: Beleg = form.getData();
-				if (getBelege().has(beleg.nr)) {
-					setActiveElementEdit(event.submitter);
-				} else {
+				if (editBeleg?.nr === beleg.nr || getBelege().has(beleg.nr) === false) {
 					saveBeleg();
+				} else {
+					setActiveElementEdit(event.submitter);
 				}
 			}
 		},
 	};
 
 	const onEdit = (beleg: Beleg) => {
-		form.setData(beleg);
-		const input = form.getInput('amount');
-		if (input) {
-			input.value = beleg.amount;
-		}
+		editBeleg = beleg;
+		form.setData(editBeleg);
+		// const input = form.getInput('amount');
+		// if (input) {
+		// 	input.value = beleg.amount;
+		// }
 	};
 
 	const onDel = (event: PointerEvent, beleg: Beleg) => {
@@ -161,36 +186,40 @@ export const BelegForm: FunctionComponent = () => {
 									Zahlung
 								</KolInputRadio>
 							</LeanInputAdapter>
-							<div></div>
+							<LeanInputAdapter className="self-end" _control={form.getInput('cash') as InputControl}>
+								<KolInputCheckbox _id="cash" _touched={touched}>
+									Barzahlung
+								</KolInputCheckbox>
+							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('kind') as InputControl}>
 								<KolSelect _id="kind" _list={ARTEN} _touched={touched}>
 									Art
 								</KolSelect>
 							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('nr') as InputControl}>
-								<KolInputText _id="nr" _touched={touched}>
+								<KolInputNumber _id="nr" _step={1} _touched={touched}>
 									Belegnummer
-								</KolInputText>
+								</KolInputNumber>
 							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('date') as InputControl}>
-								<KolInputDate _id="nr" _max={TODAY} _touched={touched} _type="date">
+								<KolInputDate _id="date" _max={TODAY} _touched={touched} _type="date">
 									<KolAbbr _title="* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!">
 										Zahlungsdatum
 									</KolAbbr>
 								</KolInputDate>
 							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('amount') as InputControl}>
-								<KolInputNumber _id="nr" _touched={touched}>
+								<KolInputNumber _id="amount" _step={0.01} _touched={touched}>
 									Betrag
 								</KolInputNumber>
 							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('reason') as InputControl}>
-								<KolInputText _id="nr" _list={getAvailableReasons()} _touched={touched}>
+								<KolInputText _id="reason" _list={getAvailableReasons()} _touched={touched}>
 									Zahlungsgrund/Verwendungszweck
 								</KolInputText>
 							</LeanInputAdapter>
 							<LeanInputAdapter _control={form.getInput('receiver') as InputControl}>
-								<KolInputText _id="nr" _list={getAvailableReceivers()} _touched={touched}>
+								<KolInputText _id="receiver" _list={getAvailableReceivers()} _touched={touched}>
 									Zahlungsempfänger
 								</KolInputText>
 							</LeanInputAdapter>
@@ -235,6 +264,7 @@ export const BelegForm: FunctionComponent = () => {
 							_on={{
 								onClick: () => {
 									setActiveElementEdit(null);
+									form.disabled = false;
 								},
 							}}
 							_variant="secondary"

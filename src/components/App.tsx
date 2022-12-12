@@ -97,15 +97,6 @@ export const App: FunctionComponent = () => {
 			</main>
 			<footer className="grid gap-2">
 				<hr className="not-print my-4" />
-				<KolAlert className="not-print">
-					<p>
-						Diese Webanwendung ist unabhängig von öffentlichen Institutionen und zu Anschauungszwecken im{' '}
-						<KolLink _href="https://thueringen.de/styleguide/" _target="styleguide">
-							Online-Styleguide des Freistaates Thüringen
-						</KolLink>{' '}
-						umgesetzt worden.
-					</p>
-				</KolAlert>
 				<KolAlert className="not-print" _type="success">
 					<p>
 						<strong>Open Source</strong>
@@ -155,6 +146,15 @@ export const App: FunctionComponent = () => {
 						<br />
 						Die Webanwendung wurde zudem als sogenannte &#34;Progressive Webanwendung&#34; umgesetzt. Das ermöglicht das Herunterladen der Webanwendung auf den
 						lokalen Arbeitsrechner (Desktop) für eine Offline-fähige Nutzung.
+					</p>
+				</KolAlert>
+				<KolAlert className="not-print">
+					<p>
+						Diese Webanwendung ist unabhängig von öffentlichen Institutionen und zu Anschauungszwecken im{' '}
+						<KolLink _href="https://thueringen.de/styleguide/" _target="styleguide">
+							Online-Styleguide des Freistaates Thüringen
+						</KolLink>{' '}
+						umgesetzt worden.
 					</p>
 				</KolAlert>
 				<hr className="not-print my-4" />

@@ -19,8 +19,8 @@ specifiers:
   '@types/react-dom': 18.0.9
   '@types/react-router': 5.1.19
   '@types/react-router-dom': 5.3.3
-  '@unocss/preset-mini': 0.47.5
-  '@unocss/webpack': 0.47.5
+  '@unocss/preset-mini': 0.47.6
+  '@unocss/webpack': 0.47.6
   ajv: 8.11.2
   chromedriver: 108.0.0
   depcheck: 1.4.3
@@ -69,8 +69,8 @@ devDependencies:
   '@types/react-dom': 18.0.9
   '@types/react-router': 5.1.19
   '@types/react-router-dom': 5.3.3
-  '@unocss/preset-mini': 0.47.5
-  '@unocss/webpack': 0.47.5_webpack@5.75.0
+  '@unocss/preset-mini': 0.47.6
+  '@unocss/webpack': 0.47.6_webpack@5.75.0
   chromedriver: 108.0.0
   depcheck: 1.4.3
   eslint-plugin-jsx-a11y: 6.6.1
@@ -3037,33 +3037,33 @@ packages:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
     dev: true
 
-  /@unocss/config/0.47.5:
-    resolution: {integrity: sha512-JzIxVoH2YdnLdKT25iSwQSgtYqOG1GRMV8IFIcZgwiE4eMe8iNghcp9PkjAaCSYcHqbzjvnWp4VtJMGePfweJg==}
+  /@unocss/config/0.47.6:
+    resolution: {integrity: sha512-KycIrpKqPrTnrbNRLUgePuzfZUKk6afsKII6B53q9rVxxC1og4g7wCsvrn2D89lPipsJ6B9041VsdIhNqa8bFg==}
     engines: {node: '>=14'}
     dependencies:
-      '@unocss/core': 0.47.5
+      '@unocss/core': 0.47.6
       unconfig: 0.3.7
     dev: true
 
-  /@unocss/core/0.47.5:
-    resolution: {integrity: sha512-KADysCd6JEIowGB6INGgZRuYhaaxrxiQXl9Xh/V+H4bgjtaNDxYyvZ2qKx5+u/kB4U9iSI0ULxBAY3oyqZ/Yjw==}
+  /@unocss/core/0.47.6:
+    resolution: {integrity: sha512-Pjg/NdpuTwZk2Ns3bzI/3XVPuXU+AQ78Sw+9QJyMgA56dArd3TlpNDN6UTOD9XAK6mxdPUu7rNSKpNTLpBW2og==}
     dev: true
 
-  /@unocss/preset-mini/0.47.5:
-    resolution: {integrity: sha512-1tUo8oDrHes6+tCU3hgfDh6FglrwwyPkec0AybPZMdFUhpRomRv+ABHTxF8abUFU67gleiN0PDGRsWRsTP4r9g==}
+  /@unocss/preset-mini/0.47.6:
+    resolution: {integrity: sha512-XP7ShDB42WU0xvZA1dG4E3LnzN4TYISm6AKQee3gmITUtE0ELTp9XutMgt0sqTe5FXeTRqw9XH7axv+4EqnE3Q==}
     dependencies:
-      '@unocss/core': 0.47.5
+      '@unocss/core': 0.47.6
     dev: true
 
-  /@unocss/webpack/0.47.5_webpack@5.75.0:
-    resolution: {integrity: sha512-kUXVVaHlqfkslv12sWvx0RNjJnQvx8rkFsDAqNc+dDVgRm74+tJgyp0JFNgfOKpphvSca1n4Va4cH2eaZ3n7qA==}
+  /@unocss/webpack/0.47.6_webpack@5.75.0:
+    resolution: {integrity: sha512-ivf1q3NwPaS4xcxHkugxUDuG+iJKPzfCnhwFtsUc3HhV6XSwtQHlih3l71LsXdevBeDGKjbuu7dLwrRAE5Gz+w==}
     peerDependencies:
       webpack: ^4 || ^5
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@rollup/pluginutils': 5.0.2
-      '@unocss/config': 0.47.5
-      '@unocss/core': 0.47.5
+      '@unocss/config': 0.47.6
+      '@unocss/core': 0.47.6
       magic-string: 0.26.7
       unplugin: 1.0.0
       webpack: 5.75.0

@@ -32,9 +32,10 @@ export type Meta = {
 // & Mapper<CategoryEnum>
 
 export type Beleg = {
+	cash: boolean;
 	payment: string;
 	kind: CategoryEnum;
-	nr: string;
+	nr: number;
 	date: string;
 	amount: number;
 	reason: string;
