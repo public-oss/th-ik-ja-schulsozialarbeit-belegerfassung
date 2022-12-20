@@ -1,11 +1,8 @@
 import { KolHeading } from '@public-ui/react';
 import React, { FunctionComponent } from 'react';
-import { getMeta } from '../shared/store';
-import { BelegForm } from './BelegForm';
 import { MetaForm } from './MetaForm';
 
 export const Allgemeines: FunctionComponent = () => {
-	const meta = getMeta();
 	return (
 		<>
 			<div className="grid sm:grid-cols-2 items-center align-center">

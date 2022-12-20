@@ -29,6 +29,7 @@ class MetaFormControl extends FormControl {
 		this.addControl(new InputControl('budget4', { mandatory: true }));
 		this.addControl(new InputControl('budget5', { mandatory: true }));
 		this.addControl(new InputControl('budget6', { mandatory: true }));
+		this.addControl(new InputControl('budget7', { mandatory: true }));
 
 		this.getInput('school')?.setValidationHandler(validationHandler);
 		this.getInput('author')?.setValidationHandler(validationHandler);
@@ -39,6 +40,7 @@ class MetaFormControl extends FormControl {
 		this.getInput('budget4')?.setValidationHandler(validationHandler);
 		this.getInput('budget5')?.setValidationHandler(validationHandler);
 		this.getInput('budget6')?.setValidationHandler(validationHandler);
+		this.getInput('budget7')?.setValidationHandler(validationHandler);
 
 		this.getInput('budget0')?.setFormatHandler(numberFormatHandler);
 		this.getInput('budget1')?.setFormatHandler(numberFormatHandler);
@@ -47,6 +49,7 @@ class MetaFormControl extends FormControl {
 		this.getInput('budget4')?.setFormatHandler(numberFormatHandler);
 		this.getInput('budget5')?.setFormatHandler(numberFormatHandler);
 		this.getInput('budget6')?.setFormatHandler(numberFormatHandler);
+		this.getInput('budget7')?.setFormatHandler(numberFormatHandler);
 
 		this.reset();
 	}
@@ -141,6 +144,11 @@ export const MetaForm: FunctionComponent = () => {
 						<LeanInputAdapter _control={form.getInput('budget6') as InputControl}>
 							<KolInputNumber _id="budget6" _touched={touched}>
 								Prävention, Gesundheitsförderung
+							</KolInputNumber>
+						</LeanInputAdapter>
+						<LeanInputAdapter _control={form.getInput('budget7') as InputControl}>
+							<KolInputNumber _id="budget7" _touched={touched}>
+								Bar
 							</KolInputNumber>
 						</LeanInputAdapter>
 					</div>

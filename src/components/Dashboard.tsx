@@ -4,58 +4,67 @@ import { currencyFormatter } from '../shared/constants';
 import { getBelege, getMeta } from '../shared/store';
 import { Beleg, Budget, Category, CategoryEnum } from '../shared/types';
 
-export const BUDGET_OVERVIEW: {
+type Overview = {
 	category: Category;
 	budget: Budget;
-}[] = [
+};
+
+export const BUDGET_OVERVIEW: Overview[] = [
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Projektbezogenen Verwaltungskosten',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Verbrauchsmaterialen',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Fortbildungen, Supervision',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Einzelfallhilfe',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Sozialpädagogische Gruppenarbeit',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
 		category: 'Innerschulische Vernetzung',
-		budget: {
-			debit: 0,
-			credit: 0,
-		},
 	},
 	{
-		category: 'Prävention, Gesundheitsförderung',
 		budget: {
-			debit: 0,
 			credit: 0,
+			debit: 0,
 		},
+		category: 'Prävention, Gesundheitsförderung',
+	},
+	{
+		budget: {
+			credit: 0,
+			debit: 0,
+		},
+		category: 'Bar',
 	},
 ];
 
@@ -63,7 +72,24 @@ const getDebit = (belege: Map<string, Beleg>, category: CategoryEnum) => {
 	let debit = 0;
 	belege.forEach((beleg) => {
 		if (beleg.kind === category) {
-			debit += beleg.amount;
+			if (beleg.payment === 'in') {
+				debit -= beleg.amount;
+			} else {
+				debit += beleg.amount;
+			}
+		}
+	});
+	return debit;
+};
+const getDebitCash = (belege: Map<string, Beleg>) => {
+	let debit = 0;
+	belege.forEach((beleg) => {
+		if (beleg.cash === true) {
+			if (beleg.payment === 'in') {
+				debit -= beleg.amount;
+			} else {
+				debit += beleg.amount;
+			}
 		}
 	});
 	return debit;
@@ -96,6 +122,9 @@ export const Dashboard: FunctionComponent = () => {
 
 		BUDGET_OVERVIEW[6].budget.credit = meta[`budget6`];
 		BUDGET_OVERVIEW[6].budget.debit = getDebit(belege, CategoryEnum['Prävention, Gesundheitsförderung']);
+
+		BUDGET_OVERVIEW[7].budget.credit = meta[`budget7`];
+		BUDGET_OVERVIEW[7].budget.debit = getDebitCash(belege);
 	}, []);
 
 	return (

@@ -6,6 +6,7 @@ export enum CategoryEnum {
 	'Sozialpädagogische Gruppenarbeit' = 'Sozialpädagogische Gruppenarbeit',
 	'Innerschulische Vernetzung' = 'Innerschulische Vernetzung',
 	'Prävention, Gesundheitsförderung' = 'Prävention, Gesundheitsförderung',
+	'Bar' = 'Bar',
 }
 
 export enum PaymentEnum {
@@ -26,6 +27,7 @@ export type Meta = {
 	budget4: number;
 	budget5: number;
 	budget6: number;
+	budget7: number;
 	school: string;
 	version?: `${number}.${number}.${number}`;
 };
