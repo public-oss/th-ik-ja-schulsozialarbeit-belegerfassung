@@ -12,9 +12,9 @@ specifiers:
   '@leanup/stack-webpack': 1.3.39
   '@playwright/test': 1.29.0
   '@public-oss/kolibri-themes': 0.0.1
-  '@public-ui/components': 1.1.15-rc.7
-  '@public-ui/core': 1.1.15-rc.7
-  '@public-ui/react': 1.1.15-rc.7
+  '@public-ui/components': 1.1.15
+  '@public-ui/core': 1.1.15
+  '@public-ui/react': 1.1.15
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
   '@types/react-router': 5.1.19
@@ -44,13 +44,13 @@ specifiers:
 
 dependencies:
   '@leanup/form': 1.3.39
-  '@leanup/kolibri-components': 1.0.5_hrqpme5xhgk45m2devrgeoa7jm
+  '@leanup/kolibri-components': 1.0.5_2iuafciavomgnp55ejvcjap2oi
   '@leanup/kolibri-react': 1.0.5_ck7utkhldt4pmbsm74e52xhjoe
   '@leanup/lib': 1.3.39
-  '@public-oss/kolibri-themes': 0.0.1_zk2vlmj4s2ndk7axhrn6lhvidu
-  '@public-ui/components': 1.1.15-rc.7
-  '@public-ui/core': 1.1.15-rc.7
-  '@public-ui/react': 1.1.15-rc.7_472n3nvxkcw4xjolfc2fgcahou
+  '@public-oss/kolibri-themes': 0.0.1_4hhirvxkpx4mq54gdpqayzamfq
+  '@public-ui/components': 1.1.15
+  '@public-ui/core': 1.1.15
+  '@public-ui/react': 1.1.15_43qq4hwexp2lxgz3mauh3z627m
   ajv: 8.11.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2028,14 +2028,14 @@ packages:
       - enquirer
     dev: true
 
-  /@leanup/kolibri-components/1.0.5_hrqpme5xhgk45m2devrgeoa7jm:
+  /@leanup/kolibri-components/1.0.5_2iuafciavomgnp55ejvcjap2oi:
     resolution: {integrity: sha512-o+C0aC4JYJUoGDVa5Zy3bd8nLtjYyjXBMgDVaVO5sZCSvImsPVVzXm3AJMfrHEtvtxTkusQXGlflVKXAvL3fEw==}
     peerDependencies:
       '@leanup/form': '>=1.2 <2'
       '@public-ui/components': '>=1 <2'
     dependencies:
       '@leanup/form': 1.3.39
-      '@public-ui/components': 1.1.15-rc.7
+      '@public-ui/components': 1.1.15
     dev: false
 
   /@leanup/kolibri-react/1.0.5_ck7utkhldt4pmbsm74e52xhjoe:
@@ -2045,7 +2045,7 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@leanup/kolibri-components': 1.0.5_hrqpme5xhgk45m2devrgeoa7jm
+      '@leanup/kolibri-components': 1.0.5_2iuafciavomgnp55ejvcjap2oi
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2288,19 +2288,19 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@public-oss/kolibri-themes/0.0.1_zk2vlmj4s2ndk7axhrn6lhvidu:
+  /@public-oss/kolibri-themes/0.0.1_4hhirvxkpx4mq54gdpqayzamfq:
     resolution: {integrity: sha512-wKZQ8alYuOfj7PVP+Ew6g9XgsL4NzLJvJlEtLC6bikL4J3qyXua8MgIZPO3dkoUpqwxpeH0U6QMYj0larSTEsg==}
     peerDependencies:
       '@public-ui/components': '>=1.1.13'
     dependencies:
-      '@public-ui/components': 1.1.15-rc.7
+      '@public-ui/components': 1.1.15
       '@public-ui/schema': 1.1.13-rc.9
     dev: false
 
-  /@public-ui/components/1.1.15-rc.7:
-    resolution: {integrity: sha512-RX2kJ0Dkizz8rVQFviiNp0xvN32UX7sfEiV3epdW0jf3JwTd/gEnEqEpQ9isOdiyz10V08Mk/SZ5m639X6sT+g==}
+  /@public-ui/components/1.1.15:
+    resolution: {integrity: sha512-Vkr6RKksTtwBUUNU5jHlCyRNjqfxpCX5xQn7ytwss9d20OCicprztLQu5NPQkyK7cAQly1BncILy2vVJehmaJA==}
     dependencies:
-      '@public-ui/schema': 1.1.15-rc.7
+      '@public-ui/schema': 1.1.15
     dev: false
 
   /@public-ui/core/1.1.13-rc.9:
@@ -2310,21 +2310,21 @@ packages:
       rxjs: 7.5.7
     dev: false
 
-  /@public-ui/core/1.1.15-rc.7:
-    resolution: {integrity: sha512-kBaReoVazhrB+f2W1DNn3hnHL7Olkeu4ent2fLzPiaXjxQmzkU/UOA9bN6pYZPUnR9lclTrGtooSCojbfaxpgw==}
+  /@public-ui/core/1.1.15:
+    resolution: {integrity: sha512-la537grID2UqyP/Wsaf/Rp80TrbRzAy1KDKn8wpeEnIakZSBJLwMU/O8lDNZ0LJ7vcvxcQsJFNQMpVeyvpKZjg==}
     dependencies:
       '@a11y-ui/core': 1.0.1-rc.6
-      rxjs: 7.6.0
+      rxjs: 7.8.0
     dev: false
 
-  /@public-ui/react/1.1.15-rc.7_472n3nvxkcw4xjolfc2fgcahou:
-    resolution: {integrity: sha512-j2Y8hHNl3JmH/m7JtPXn10O//VLmPkkWuy/uuTCW7TCXv7tyuZcu0HrqDp9x9I+l5u9+V6QX2TWgHjYnG6+rmw==}
+  /@public-ui/react/1.1.15_43qq4hwexp2lxgz3mauh3z627m:
+    resolution: {integrity: sha512-3UpNXFV1GDY76yW1uTuEtI9A2GFsAh9ZT7WX2EnA4O6LhpJayC5zn/FVmW6eGD0sSUuOa+aNh046llyYgZGICw==}
     peerDependencies:
-      '@public-ui/components': 1.1.15-rc.7
+      '@public-ui/components': 1.1.15
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@public-ui/components': 1.1.15-rc.7
+      '@public-ui/components': 1.1.15
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2335,10 +2335,10 @@ packages:
       '@public-ui/core': 1.1.13-rc.9
     dev: false
 
-  /@public-ui/schema/1.1.15-rc.7:
-    resolution: {integrity: sha512-01EfamXv7E/vBoXJUYEjikkdd5aj6LscLoT6GbJ/cKKnLnGPO8eZZ8Yuewm6SgTp0X2XmKNEJ0RGpkcz7NFxBg==}
+  /@public-ui/schema/1.1.15:
+    resolution: {integrity: sha512-1I1QM2xHyaXSBwHV4mlsAX6fi8vjLkcDsFrkxNl3gNl5qtZF8vP9kveOWYNqr1jKG4ZoRDFZ+/1/xP+Lu2a/dw==}
     dependencies:
-      '@public-ui/core': 1.1.15-rc.7
+      '@public-ui/core': 1.1.15
     dev: false
 
   /@remix-run/router/1.1.0:
@@ -7552,7 +7552,7 @@ packages:
       log-update: 4.0.0
       p-map: 4.0.0
       rfdc: 1.3.0
-      rxjs: 7.6.0
+      rxjs: 7.8.0
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
@@ -9641,8 +9641,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /rxjs/7.6.0:
-    resolution: {integrity: sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==}
+  /rxjs/7.8.0:
+    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
       tslib: 2.4.1
 
