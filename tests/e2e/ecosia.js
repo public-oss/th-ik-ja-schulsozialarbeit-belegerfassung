@@ -8,11 +8,6 @@ describe(`Demo's`, () => {
 			.setValue('input[type=search]', 'nightwatch')
 			.assert.visible('button[type=submit]')
 			.click('button[type=submit]')
-			.axeInject()
-			.axeRun()
-			.getValue('input[name=q]', function (result) {
-				this.assert.equal(result.value, 'nightwatch');
-			})
 			.end();
 	});
 });

@@ -18,7 +18,7 @@ const reportDir = path.resolve(process.cwd(), '.reports/nightwatch');
 
 module.exports = {
 	src_folders: ['tests/e2e'],
-	plugins: ['nightwatch-axe-verbose'],
+	plugins: ['nightwatch-axe-verbose'], // https://nightwatchjs.org/guide/using-nightwatch/accessibility-testing.html
 	output_folder: reportDir,
 	test_settings: {
 		default: {
