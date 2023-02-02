@@ -41,15 +41,16 @@
 		"@leanup/kolibri-react": "1.0.5",
 		"@leanup/lib": "1.3.43",
 		"@public-oss/kolibri-themes": "0.0.3",
-		"@public-ui/components": "1.3.0",
-		"@public-ui/core": "1.3.0",
-		"@public-ui/react": "1.3.0",
+		"@public-ui/components": "1.3.1",
+		"@public-ui/core": "1.3.2",
+		"@public-ui/react": "1.3.1",
 		"ajv": "8.12.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-router": "6.6.2",
-		"react-router-dom": "6.6.2",
-		"register-service-worker": "1.7.2"
+		"react-router": "6.8.0",
+		"react-router-dom": "6.8.0",
+		"register-service-worker": "1.7.2",
+		"write-excel-file": "1.4.21"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "17.4.2",
@@ -64,8 +65,8 @@
 		"@types/react-dom": "18.0.10",
 		"@types/react-router": "5.1.20",
 		"@types/react-router-dom": "5.3.3",
-		"@unocss/preset-mini": "0.49.1",
-		"@unocss/webpack": "0.49.1",
+		"@unocss/preset-mini": "0.49.2",
+		"@unocss/webpack": "0.49.2",
 		"chromedriver": "109.0.0",
 		"depcheck": "1.4.3",
 		"eslint-plugin-jsx-a11y": "6.7.1",
@@ -78,7 +79,7 @@
 		"rimraf": "4.1.2",
 		"ts-node": "10.9.1",
 		"ts-prune": "0.10.3",
-		"typescript": "4.9.4"
+		"typescript": "4.9.5"
 	},
 	"files": [
 		"dist/"

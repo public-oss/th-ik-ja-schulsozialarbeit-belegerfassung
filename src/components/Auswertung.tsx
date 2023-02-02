@@ -1,10 +1,94 @@
 import { SelectOption } from '@public-ui/components';
 import { KolHeading, KolSelect, KolButton, KolTable } from '@public-ui/react';
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import writeXlsxFile from 'write-excel-file';
 import { getRoot } from '../react-roots';
 import { ARTEN, currencyFormatter, dateFormatter } from '../shared/constants';
 import { getBelege, getMeta, subscribeBelege } from '../shared/store';
 import { Beleg, Category } from '../shared/types';
+
+const HEADER_ROW = [
+	[
+		{},
+		{},
+		{},
+		{},
+		{
+			fontSize: 16,
+			fontWeight: 'bold',
+			value: 'Buchungsliste',
+		},
+	],
+	[
+		{},
+		{},
+		{},
+		{},
+		{
+			fontWeight: 'bold',
+			value: 'alle Ausgaben in chronologischer Reihenfolge',
+		},
+	],
+	[
+		{
+			fontWeight: 'bold',
+			value: 'Buchungsposition:',
+		},
+	],
+	[
+		{
+			align: 'center',
+			fontSize: 10,
+			span: 6,
+			value: '(Bei Bedarf weitere Zeilen einfügen!)',
+		},
+	],
+	[],
+	[
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'lfd. Nr.',
+		},
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'Beleg-Nr.',
+		},
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'Zahlungsdatum*',
+		},
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'Betrag in €',
+		},
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'Zahlungsgrund / Verwendungszweck',
+		},
+		{
+			align: 'center',
+			backgroundColor: '#c0c0c0',
+			fontSize: 10,
+			fontWeight: 'bold',
+			value: 'Zahlungsempfänger/in',
+		},
+	],
+];
 
 export const Auswertung: FunctionComponent = () => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());
@@ -19,6 +103,42 @@ export const Auswertung: FunctionComponent = () => {
 			belege$.unsubscribe();
 		};
 	}, [year, kind]);
+
+	const downloadExcel = async () => {
+		const rows: any[][] = [];
+		const belege = getBelege();
+		let idx = 1;
+		belege.forEach((beleg, id) => {
+			rows.push([
+				{
+					value: idx++,
+				},
+				{
+					value: id,
+				},
+				{
+					format: 'dd.mm.yyyy',
+					type: Date,
+					value: new Date(beleg.date),
+				},
+				{
+					format: '#,##0.00',
+					type: Number,
+					value: beleg.amount,
+				},
+				{
+					value: beleg.reason,
+				},
+				{
+					value: beleg.receiver,
+				},
+			]);
+		});
+
+		await writeXlsxFile(HEADER_ROW.concat(rows), {
+			fileName: 'file.xlsx',
+		});
+	};
 
 	const getYears = () => {
 		const yearsMap: Set<number> = new Set();
@@ -76,6 +196,12 @@ export const Auswertung: FunctionComponent = () => {
 	return (
 		<>
 			<div className="grid sm:grid-cols-2 items-center align-center">
+				<KolButton
+					_on={{
+						onClick: downloadExcel,
+					}}
+					_label="Download Excel"
+				></KolButton>
 				<div className="sm:text-right sm:order-2">
 					{/* <img alt="Logo Freistaat Thüringen" className="pt-4 pr-4" src="https://thueringen.de/styleguide/freistaat-thueringen-logo.svg" width="200" /> */}
 					{/* <img alt="Logo Ilm-Kreis in Thüringen" className="pt-4 pr-4" src="https://www.ilm-kreis.de/media/custom/2778_1182_1_g.PNG" width="200" /> */}
