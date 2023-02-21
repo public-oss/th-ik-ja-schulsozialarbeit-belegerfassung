@@ -1,104 +1,14 @@
 import { SelectOption } from '@public-ui/components';
 import { KolHeading, KolSelect, KolButton, KolTable } from '@public-ui/react';
 import React, { FC, useEffect, useState } from 'react';
-import writeXlsxFile, { SheetData } from 'write-excel-file';
+import writeXlsxFile, { SheetData, Schema, Columns } from 'write-excel-file';
 import { getRoot } from '../react-roots';
 import { ARTEN, currencyFormatter, dateFormatter } from '../shared/constants';
 import { getBelege, getMeta, subscribeBelege } from '../shared/store';
-import { Beleg, Category } from '../shared/types';
-
-const HEADER_ROW: SheetData = [
-	[
-		{},
-		{},
-		{},
-		{},
-		{
-			alignVertical: 'center',
-			fontSize: 16,
-			fontWeight: 'bold',
-			value: 'Buchungsliste',
-		},
-	],
-	[
-		{},
-		{},
-		{},
-		{},
-		{
-			alignVertical: 'center',
-			fontWeight: 'bold',
-			value: 'alle Ausgaben in chronologischer Reihenfolge',
-		},
-	],
-	[
-		{
-			alignVertical: 'center',
-			fontWeight: 'bold',
-			value: 'Buchungsposition:',
-		},
-	],
-	[
-		{
-			align: 'center',
-			alignVertical: 'center',
-			span: 6,
-			value: '(Bei Bedarf weitere Zeilen einfügen!)',
-		},
-	],
-	[],
-	[
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			height: 30,
-			value: 'lfd. Nr.',
-		},
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			value: 'Beleg-Nr.',
-		},
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			value: 'Zahlungsdatum*',
-		},
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			value: 'Betrag in €',
-		},
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			value: 'Zahlungsgrund / Verwendungszweck',
-		},
-		{
-			align: 'center',
-			alignVertical: 'center',
-			backgroundColor: '#c0c0c0',
-			borderStyle: 'thin',
-			fontWeight: 'bold',
-			value: 'Zahlungsempfänger/in',
-		},
-	],
-];
+import { Beleg, Category, CategoryEnum } from '../shared/types';
+import { getBuchungsliste } from './sheets/Buchungsliste';
+import { getKategorieUebersicht } from './sheets/kategorie-uebersicht';
+import { getKostenUebersicht } from './sheets/kosten-uebersicht';
 
 export const Auswertung: FC = () => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());
@@ -115,59 +25,10 @@ export const Auswertung: FC = () => {
 	}, [year, kind]);
 
 	const downloadExcel1 = async () => {
-		const rows: SheetData = [];
-		const belege = getBelege();
-		let idx = 1;
-		belege.forEach((beleg, id) => {
-			rows.push([
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: idx++,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: id,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					format: 'dd.mm.yyyy',
-					type: Date,
-					value: new Date(beleg.date),
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					format: '#,##0.00',
-					type: Number,
-					value: beleg.amount,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: beleg.reason,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: beleg.receiver,
-				},
-			]);
-		});
-		rows.push([
-			{
-				alignVertical: 'center',
-				fontSize: 8,
-				span: 6,
-				value: '* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!',
-			},
-		]);
-
-		await writeXlsxFile(HEADER_ROW.concat(rows), {
+		const sheet = getBuchungsliste(getBelege());
+		await writeXlsxFile(sheet.rows, {
 			fileName: 'Buchungsliste 2022.xlsx',
-			columns: [{ width: 10 }, { width: 10 }, { width: 15 }, { width: 15 }, { width: 50 }, { width: 25 }],
+			columns: sheet.columns,
 			dateFormat: 'dd.mm.yyyy',
 			fontFamily: 'Arial',
 			fontSize: 10,
@@ -175,62 +36,34 @@ export const Auswertung: FC = () => {
 	};
 
 	const downloadExcel2 = async () => {
-		const rows: SheetData = [];
 		const belege = getBelege();
-		let idx = 1;
-		belege.forEach((beleg, id) => {
-			rows.push([
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: idx++,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: id,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					format: 'dd.mm.yyyy',
-					type: Date,
-					value: new Date(beleg.date),
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					format: '#,##0.00',
-					type: Number,
-					value: beleg.amount,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: beleg.reason,
-				},
-				{
-					alignVertical: 'center',
-					borderStyle: 'thin',
-					value: beleg.receiver,
-				},
-			]);
-		});
-		rows.push([
-			{
-				alignVertical: 'center',
-				fontSize: 8,
-				span: 6,
-				value: '* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!',
-			},
-		]);
+		const sheets: string[] = [];
+		const data: SheetData[] = [];
+		const columns: Columns[] = [];
 
-		await writeXlsxFile(HEADER_ROW.concat(rows), {
+		// 'Kostenübersicht', 'Sachkosten', 'Einzelhilfe', 'Sozialpäd. GA', 'AGs', 'Prävention'
+		[
+			getKostenUebersicht(belege),
+			getKategorieUebersicht(belege, CategoryEnum['Projektbezogenen Verwaltungskosten']),
+			getKategorieUebersicht(belege, CategoryEnum['Verbrauchsmaterialen']),
+			getKategorieUebersicht(belege, CategoryEnum['Fortbildungen, Supervision']),
+			getKategorieUebersicht(belege, CategoryEnum['Einzelfallhilfe']),
+			getKategorieUebersicht(belege, CategoryEnum['Sozialpädagogische Gruppenarbeit']),
+			getKategorieUebersicht(belege, CategoryEnum['Prävention, Gesundheitsförderung']),
+		].forEach((sheet) => {
+			sheets.push(sheet.title);
+			columns.push(sheet.columns);
+			data.push(sheet.rows);
+		});
+
+		await writeXlsxFile(data, {
 			fileName: 'Buchungsliste SSA GOETHE Ilmenau 2022.xlsx',
-			columns: [{ width: 10 }, { width: 10 }, { width: 15 }, { width: 15 }, { width: 50 }, { width: 25 }],
+			sheets,
+			columns,
 			dateFormat: 'dd.mm.yyyy',
 			fontFamily: 'Arial',
 			fontSize: 10,
+			orientation: 'landscape',
 		});
 	};
 

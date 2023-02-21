@@ -1,3 +1,5 @@
+import { Columns, SheetData } from 'write-excel-file';
+
 export enum CategoryEnum {
 	'Projektbezogenen Verwaltungskosten' = 'Projektbezogenen Verwaltungskosten',
 	'Verbrauchsmaterialen' = 'Verbrauchsmaterialen',
@@ -8,6 +10,15 @@ export enum CategoryEnum {
 	'Prävention, Gesundheitsförderung' = 'Prävention, Gesundheitsförderung',
 	'Bar' = 'Bar',
 }
+
+export type SheetPack = {
+	title: string;
+	columns: Columns;
+	rows: SheetData;
+};
+
+export type SheetPackGenerator = (belege: Map<number, Beleg>) => SheetPack;
+export type SheetPackGeneratorByCategory = (belege: Map<number, Beleg>, category: CategoryEnum) => SheetPack;
 
 export enum PaymentEnum {
 	'Einzahlung' = 'in',
