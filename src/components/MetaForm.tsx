@@ -2,7 +2,7 @@ import { FormControl, InputControl, RequiredValidator, ValidationHandler } from 
 import { LeanInputAdapter } from '@leanup/kolibri-react';
 import { KoliBriFormCallbacks } from '@public-ui/components/dist/types/components/form/component';
 import { KolAlert, KolButton, KolForm, KolHeading, KolInputNumber, KolInputText } from '@public-ui/react';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { numberFormatHandler } from '../shared/constants';
 import { getMeta, saveMeta } from '../shared/store';
 
@@ -60,7 +60,7 @@ class MetaFormControl extends FormControl {
 	};
 }
 
-export const MetaForm: FunctionComponent = () => {
+export const MetaForm: FC = () => {
 	const [form, setForm] = useState(new MetaFormControl());
 	const [saved, setSaved] = useState(false);
 	const [touched, setTouched] = useState(false);

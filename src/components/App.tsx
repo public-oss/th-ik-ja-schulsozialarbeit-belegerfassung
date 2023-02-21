@@ -1,5 +1,5 @@
 import { KolAbbr, KolAlert, KolButton, KolInputCheckbox, KolInputFile, KolKolibri, KolLink, KolNav } from '@public-ui/react';
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { downloadAppData, loadAppData } from '../shared/store';
 import { Allgemeines } from './Allgemeines';
@@ -9,7 +9,7 @@ import { Erfassung } from './Erfassung';
 
 type Page = 'general' | 'dashboard' | 'form' | 'report';
 
-export const App: FunctionComponent = () => {
+export const App: FC = () => {
 	const location = useLocation();
 	const [page, setPage] = useState<Page>('general');
 

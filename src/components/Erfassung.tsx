@@ -1,9 +1,9 @@
 import { KolHeading } from '@public-ui/react';
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { getMeta } from '../shared/store';
 import { BelegForm } from './BelegForm';
 
-export const Erfassung: FunctionComponent = () => {
+export const Erfassung: FC = () => {
 	const meta = getMeta();
 	return (
 		<>

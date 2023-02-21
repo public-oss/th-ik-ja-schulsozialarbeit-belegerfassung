@@ -1,5 +1,5 @@
 import { KolCard, KolHeading, KolLink, KolTable } from '@public-ui/react';
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { currencyFormatter } from '../shared/constants';
 import { getBelege, getMeta } from '../shared/store';
 import { Beleg, Budget, Category, CategoryEnum } from '../shared/types';
@@ -95,7 +95,7 @@ const getDebitCash = (belege: Map<string, Beleg>) => {
 	return debit;
 };
 
-export const Dashboard: FunctionComponent = () => {
+export const Dashboard: FC = () => {
 	const [budget] = useState<any[]>(BUDGET_OVERVIEW);
 
 	useEffect(() => {

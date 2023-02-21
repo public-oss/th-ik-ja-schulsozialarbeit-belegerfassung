@@ -17,7 +17,7 @@ import {
 	KolModal,
 	KolSelect,
 } from '@public-ui/react';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { ARTEN, AUS_EIN, numberFormatHandler } from '../shared/constants';
 import { addBeleg, getAvailableReasons, getAvailableReceivers, getBelege, removeBeleg } from '../shared/store';
 import { Beleg } from '../shared/types';
@@ -112,7 +112,7 @@ class BelegFormControl extends FormControl {
 
 let editBeleg: Beleg | null = null;
 
-export const BelegForm: FunctionComponent = () => {
+export const BelegForm: FC = () => {
 	const [form, setForm] = useState(new BelegFormControl());
 	const [saved, setSaved] = useState(false);
 	const [touched, setTouched] = useState(false);

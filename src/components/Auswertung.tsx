@@ -1,19 +1,20 @@
 import { SelectOption } from '@public-ui/components';
 import { KolHeading, KolSelect, KolButton, KolTable } from '@public-ui/react';
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import writeXlsxFile from 'write-excel-file';
+import React, { FC, useEffect, useState } from 'react';
+import writeXlsxFile, { SheetData } from 'write-excel-file';
 import { getRoot } from '../react-roots';
 import { ARTEN, currencyFormatter, dateFormatter } from '../shared/constants';
 import { getBelege, getMeta, subscribeBelege } from '../shared/store';
 import { Beleg, Category } from '../shared/types';
 
-const HEADER_ROW = [
+const HEADER_ROW: SheetData = [
 	[
 		{},
 		{},
 		{},
 		{},
 		{
+			alignVertical: 'center',
 			fontSize: 16,
 			fontWeight: 'bold',
 			value: 'Buchungsliste',
@@ -25,12 +26,14 @@ const HEADER_ROW = [
 		{},
 		{},
 		{
+			alignVertical: 'center',
 			fontWeight: 'bold',
 			value: 'alle Ausgaben in chronologischer Reihenfolge',
 		},
 	],
 	[
 		{
+			alignVertical: 'center',
 			fontWeight: 'bold',
 			value: 'Buchungsposition:',
 		},
@@ -38,7 +41,7 @@ const HEADER_ROW = [
 	[
 		{
 			align: 'center',
-			fontSize: 10,
+			alignVertical: 'center',
 			span: 6,
 			value: '(Bei Bedarf weitere Zeilen einfügen!)',
 		},
@@ -47,50 +50,57 @@ const HEADER_ROW = [
 	[
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
+			height: 30,
 			value: 'lfd. Nr.',
 		},
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
 			value: 'Beleg-Nr.',
 		},
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
 			value: 'Zahlungsdatum*',
 		},
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
 			value: 'Betrag in €',
 		},
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
 			value: 'Zahlungsgrund / Verwendungszweck',
 		},
 		{
 			align: 'center',
+			alignVertical: 'center',
 			backgroundColor: '#c0c0c0',
-			fontSize: 10,
+			borderStyle: 'thin',
 			fontWeight: 'bold',
 			value: 'Zahlungsempfänger/in',
 		},
 	],
 ];
 
-export const Auswertung: FunctionComponent = () => {
+export const Auswertung: FC = () => {
 	const [belege, setBelege] = useState<Map<string, Beleg>>(getBelege());
 	const [year, setYear] = useState<number>(0);
 	const [kind, setKind] = useState<Category>('Verbrauchsmaterialen');
@@ -104,39 +114,123 @@ export const Auswertung: FunctionComponent = () => {
 		};
 	}, [year, kind]);
 
-	const downloadExcel = async () => {
-		const rows: any[][] = [];
+	const downloadExcel1 = async () => {
+		const rows: SheetData = [];
 		const belege = getBelege();
 		let idx = 1;
 		belege.forEach((beleg, id) => {
 			rows.push([
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					value: idx++,
 				},
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					value: id,
 				},
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					format: 'dd.mm.yyyy',
 					type: Date,
 					value: new Date(beleg.date),
 				},
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					format: '#,##0.00',
 					type: Number,
 					value: beleg.amount,
 				},
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					value: beleg.reason,
 				},
 				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
 					value: beleg.receiver,
 				},
 			]);
 		});
+		rows.push([
+			{
+				alignVertical: 'center',
+				fontSize: 8,
+				span: 6,
+				value: '* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!',
+			},
+		]);
 
 		await writeXlsxFile(HEADER_ROW.concat(rows), {
-			fileName: 'file.xlsx',
+			fileName: 'Buchungsliste 2022.xlsx',
+			columns: [{ width: 10 }, { width: 10 }, { width: 15 }, { width: 15 }, { width: 50 }, { width: 25 }],
+			dateFormat: 'dd.mm.yyyy',
+			fontFamily: 'Arial',
+			fontSize: 10,
+		});
+	};
+
+	const downloadExcel2 = async () => {
+		const rows: SheetData = [];
+		const belege = getBelege();
+		let idx = 1;
+		belege.forEach((beleg, id) => {
+			rows.push([
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					value: idx++,
+				},
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					value: id,
+				},
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					format: 'dd.mm.yyyy',
+					type: Date,
+					value: new Date(beleg.date),
+				},
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					format: '#,##0.00',
+					type: Number,
+					value: beleg.amount,
+				},
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					value: beleg.reason,
+				},
+				{
+					alignVertical: 'center',
+					borderStyle: 'thin',
+					value: beleg.receiver,
+				},
+			]);
+		});
+		rows.push([
+			{
+				alignVertical: 'center',
+				fontSize: 8,
+				span: 6,
+				value: '* Hinweis: Als Zahlungsdatum ist bei unbar bezahlten Rechnungen (Überweisungen) das Datum der Wertstellung laut Kontoauszug einzutragen!',
+			},
+		]);
+
+		await writeXlsxFile(HEADER_ROW.concat(rows), {
+			fileName: 'Buchungsliste SSA GOETHE Ilmenau 2022.xlsx',
+			columns: [{ width: 10 }, { width: 10 }, { width: 15 }, { width: 15 }, { width: 50 }, { width: 25 }],
+			dateFormat: 'dd.mm.yyyy',
+			fontFamily: 'Arial',
+			fontSize: 10,
 		});
 	};
 
@@ -198,9 +292,15 @@ export const Auswertung: FunctionComponent = () => {
 			<div className="grid sm:grid-cols-2 items-center align-center">
 				<KolButton
 					_on={{
-						onClick: downloadExcel,
+						onClick: downloadExcel1,
 					}}
-					_label="Download Excel"
+					_label="Download Excel 1"
+				></KolButton>
+				<KolButton
+					_on={{
+						onClick: downloadExcel2,
+					}}
+					_label="Download Excel 2"
 				></KolButton>
 				<div className="sm:text-right sm:order-2">
 					{/* <img alt="Logo Freistaat Thüringen" className="pt-4 pr-4" src="https://thueringen.de/styleguide/freistaat-thueringen-logo.svg" width="200" /> */}
@@ -262,7 +362,7 @@ export const Auswertung: FunctionComponent = () => {
 							{
 								label: 'lfd. Nr.',
 								key: '',
-								render: (el, _cell, tupel, data) => {
+								render: (el: HTMLElement, _cell, tupel, data) => {
 									const index = data.indexOf(tupel);
 									getRoot(el).render(
 										<span

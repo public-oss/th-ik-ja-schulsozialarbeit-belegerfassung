@@ -1,6 +1,6 @@
 import { KoliBriDevHelper } from '@public-ui/components';
 import { KolButton, KolTable } from '@public-ui/react';
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { getRoot } from '../react-roots';
 import { currencyFormatter, dateFormatter } from '../shared/constants';
 import { getBelege, subscribeBelege } from '../shared/store';
@@ -11,7 +11,7 @@ type Props = {
 	remove: (event: PointerEvent, beleg: Beleg) => void;
 };
 
-export const BelegList: FunctionComponent<Props> = (props) => {
+export const BelegList: FC<Props> = (props) => {
 	const [belege, setBelege] = useState<Map<number, Beleg>>(getBelege());
 
 	const belege$ = subscribeBelege(setBelege);

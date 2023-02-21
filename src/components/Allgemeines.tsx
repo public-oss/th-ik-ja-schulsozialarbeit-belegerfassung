@@ -1,9 +1,8 @@
-import { KolButton, KolHeading } from '@public-ui/react';
-import React, { FunctionComponent } from 'react';
-import writeXlsxFile from 'write-excel-file';
+import { KolHeading } from '@public-ui/react';
+import React, { FC } from 'react';
 import { MetaForm } from './MetaForm';
 
-export const Allgemeines: FunctionComponent = () => {
+export const Allgemeines: FC = () => {
 	return (
 		<>
 			<div className="grid sm:grid-cols-2 items-center align-center">
