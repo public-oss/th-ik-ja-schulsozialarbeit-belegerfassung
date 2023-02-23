@@ -102,6 +102,7 @@ export const getBuchungsliste: SheetPackGenerator = (belege: Map<number, Beleg>)
 			{
 				alignVertical: 'center',
 				borderStyle: 'thin',
+				color: '#c0c0c0',
 				value: idx++,
 			},
 			{

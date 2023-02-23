@@ -81,6 +81,7 @@ export const getKategorieUebersicht: SheetPackGeneratorByCategory = (belege: Map
 				{
 					alignVertical: 'center',
 					borderStyle: 'thin',
+					color: '#c0c0c0',
 					value: idx++,
 				},
 				{
