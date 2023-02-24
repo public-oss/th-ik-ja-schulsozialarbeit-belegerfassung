@@ -50,7 +50,7 @@
 		"react-router": "6.8.1",
 		"react-router-dom": "6.8.1",
 		"register-service-worker": "1.7.2",
-		"write-excel-file": "1.4.21"
+		"write-excel-file": "1.4.22"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "17.4.4",
