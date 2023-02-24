@@ -75,7 +75,7 @@
 		"exceljs-export": "1.0.6",
 		"husky": "8.0.3",
 		"nightwatch-axe-verbose": "2.2.0",
-		"npm-check-updates": "16.7.5",
+		"npm-check-updates": "16.7.9",
 		"rimraf": "4.1.2",
 		"ts-node": "10.9.1",
 		"ts-prune": "0.10.3",
