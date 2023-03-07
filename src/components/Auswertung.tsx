@@ -50,6 +50,7 @@ export const Auswertung: FC = () => {
 			getKategorieUebersicht(belege, CategoryEnum['Einzelfallhilfe']),
 			getKategorieUebersicht(belege, CategoryEnum['Sozialpädagogische Gruppenarbeit']),
 			getKategorieUebersicht(belege, CategoryEnum['Prävention, Gesundheitsförderung']),
+			getKategorieUebersicht(belege, CategoryEnum['Innerschulische Vernetzung']),
 		].forEach((sheet) => {
 			sheets.push(sheet.title);
 			columns.push(sheet.columns);

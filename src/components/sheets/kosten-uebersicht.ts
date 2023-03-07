@@ -169,6 +169,7 @@ export const getKostenUebersicht: SheetPackGenerator = (belege: Map<number, Bele
 		getLine(CategoryEnum['Projektbezogenen Verwaltungskosten'], belege),
 		getLine(CategoryEnum['Verbrauchsmaterialen'], belege),
 		getLine(CategoryEnum['Fortbildungen, Supervision'], belege),
+		getLine(CategoryEnum['Innerschulische Vernetzung'], belege),
 		[
 			{},
 			{},
@@ -181,7 +182,12 @@ export const getKostenUebersicht: SheetPackGenerator = (belege: Map<number, Bele
 			{
 				backgroundColor: '#c0c0c0',
 				value: sumIncomes(
-					[CategoryEnum['Projektbezogenen Verwaltungskosten'], CategoryEnum['Verbrauchsmaterialen'], CategoryEnum['Fortbildungen, Supervision']],
+					[
+						CategoryEnum['Projektbezogenen Verwaltungskosten'],
+						CategoryEnum['Verbrauchsmaterialen'],
+						CategoryEnum['Fortbildungen, Supervision'],
+						CategoryEnum['Innerschulische Vernetzung'],
+					],
 					belege
 				),
 				format: '#,##0.00',
@@ -192,7 +198,12 @@ export const getKostenUebersicht: SheetPackGenerator = (belege: Map<number, Bele
 			{
 				backgroundColor: '#c0c0c0',
 				value: sumOutgoings(
-					[CategoryEnum['Projektbezogenen Verwaltungskosten'], CategoryEnum['Verbrauchsmaterialen'], CategoryEnum['Fortbildungen, Supervision']],
+					[
+						CategoryEnum['Projektbezogenen Verwaltungskosten'],
+						CategoryEnum['Verbrauchsmaterialen'],
+						CategoryEnum['Fortbildungen, Supervision'],
+						CategoryEnum['Innerschulische Vernetzung'],
+					],
 					belege
 				),
 				format: '#,##0.00',

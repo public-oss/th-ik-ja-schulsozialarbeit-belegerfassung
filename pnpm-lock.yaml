@@ -13,16 +13,16 @@ specifiers:
   '@leanup/stack-react': 1.3.43
   '@leanup/stack-webpack': 1.3.43
   '@public-oss/kolibri-themes': 0.0.3
-  '@public-ui/components': 1.4.0-rc.9
-  '@public-ui/core': 1.4.0-rc.9
-  '@public-ui/react': 1.4.0-rc.9
-  '@types/nightwatch': 2.3.19
+  '@public-ui/components': 1.4.2
+  '@public-ui/core': 1.4.2
+  '@public-ui/react': 1.4.2
+  '@types/nightwatch': 2.3.21
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
   '@types/react-router': 5.1.20
   '@types/react-router-dom': 5.3.3
-  '@unocss/preset-mini': 0.49.7
-  '@unocss/webpack': 0.49.7
+  '@unocss/preset-mini': 0.50.4
+  '@unocss/webpack': 0.50.4
   ajv: 8.12.0
   chromedriver: 110.0.0
   depcheck: 1.4.3
@@ -32,34 +32,34 @@ specifiers:
   exceljs-export: 1.0.6
   husky: 8.0.3
   nightwatch-axe-verbose: 2.2.0
-  npm-check-updates: 16.7.5
+  npm-check-updates: 16.7.10
   react: 18.2.0
   react-dom: 18.2.0
-  react-router: 6.8.1
-  react-router-dom: 6.8.1
+  react-router: 6.8.2
+  react-router-dom: 6.8.2
   register-service-worker: 1.7.2
-  rimraf: 4.1.2
+  rimraf: 4.3.1
   ts-node: 10.9.1
   ts-prune: 0.10.3
   typescript: 4.9.5
-  write-excel-file: 1.4.21
+  write-excel-file: 1.4.24
 
 dependencies:
   '@leanup/form': 1.3.43
-  '@leanup/kolibri-components': 1.0.5_ucmg3yzd7abx7symf3p7e7pf5e
+  '@leanup/kolibri-components': 1.0.5_cdi6v4kd7qyaipqg6jdmakxwve
   '@leanup/kolibri-react': 1.0.5_ck7utkhldt4pmbsm74e52xhjoe
   '@leanup/lib': 1.3.43
-  '@public-oss/kolibri-themes': 0.0.3_kbc3stdbhq2iuqrvhee66sqdfy
-  '@public-ui/components': 1.4.0-rc.9
-  '@public-ui/core': 1.4.0-rc.9
-  '@public-ui/react': 1.4.0-rc.9_ip3bgnhjqgwhlkc27sj27bzcj4
+  '@public-oss/kolibri-themes': 0.0.3_3klldl73gbsumq7rt4zco5h33u
+  '@public-ui/components': 1.4.2
+  '@public-ui/core': 1.4.2
+  '@public-ui/react': 1.4.2_udkimllu34xocg3tj5ac4zjjny
   ajv: 8.12.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-router: 6.8.1_react@18.2.0
-  react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
+  react-router: 6.8.2_react@18.2.0
+  react-router-dom: 6.8.2_biqbaboplfbrettd7655fr4n2y
   register-service-worker: 1.7.2
-  write-excel-file: 1.4.21
+  write-excel-file: 1.4.24
 
 devDependencies:
   '@commitlint/cli': 17.4.4_@swc+core@1.3.25
@@ -69,13 +69,13 @@ devDependencies:
   '@leanup/stack': 1.3.43_3uybfmm75uxioqswx4dlgexwt4
   '@leanup/stack-react': 1.3.43_biqbaboplfbrettd7655fr4n2y
   '@leanup/stack-webpack': 1.3.43_rvs66vuwqvwff7fb5knbaaenvi
-  '@types/nightwatch': 2.3.19
+  '@types/nightwatch': 2.3.21
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
   '@types/react-router': 5.1.20
   '@types/react-router-dom': 5.3.3
-  '@unocss/preset-mini': 0.49.7
-  '@unocss/webpack': 0.49.7_xnvm3nz4mmjaxdtzfd6rahyqou
+  '@unocss/preset-mini': 0.50.4
+  '@unocss/webpack': 0.50.4_xnvm3nz4mmjaxdtzfd6rahyqou
   chromedriver: 110.0.0
   depcheck: 1.4.3
   eslint-plugin-jsx-a11y: 6.7.1_eslint@8.31.0
@@ -84,8 +84,8 @@ devDependencies:
   exceljs-export: 1.0.6
   husky: 8.0.3
   nightwatch-axe-verbose: 2.2.0
-  npm-check-updates: 16.7.5
-  rimraf: 4.1.2
+  npm-check-updates: 16.7.10
+  rimraf: 4.3.1
   ts-node: 10.9.1_2wr4v76ygye2jsfdtkffjm6c6m
   ts-prune: 0.10.3
   typescript: 4.9.5
@@ -1874,14 +1874,14 @@ packages:
       lodash.uniq: 4.5.0
     dev: true
 
-  /@floating-ui/core/1.2.1:
-    resolution: {integrity: sha512-LSqwPZkK3rYfD7GKoIeExXOyYx6Q1O4iqZWwIehDNuv3Dv425FIAE8PRwtAx1imEolFTHgBEcoFHm9MDnYgPCg==}
+  /@floating-ui/core/1.2.2:
+    resolution: {integrity: sha512-FaO9KVLFnxknZaGWGmNtjD2CVFuc0u4yeGEofoyXO2wgRA7fLtkngT6UB0vtWQWuhH3iMTZZ/Y89CMeyGfn8pA==}
     dev: false
 
-  /@floating-ui/dom/1.2.1:
-    resolution: {integrity: sha512-Rt45SmRiV8eU+xXSB9t0uMYiQ/ZWGE/jumse2o3i5RGlyvcbqOF4q+1qBnzLE2kZ5JGhq0iMkcGXUKbFe7MpTA==}
+  /@floating-ui/dom/1.2.3:
+    resolution: {integrity: sha512-lK9cZUrHSJLMVAdCvDqs6Ug8gr0wmqksYiaoj/bxj2gweRQkSuhg2/V6Jswz2KiQ0RAULbqw1oQDJIMpQ5GfGA==}
     dependencies:
-      '@floating-ui/core': 1.2.1
+      '@floating-ui/core': 1.2.2
     dev: false
 
   /@gar/promisify/1.1.3:
@@ -2402,14 +2402,14 @@ packages:
       - enquirer
     dev: true
 
-  /@leanup/kolibri-components/1.0.5_ucmg3yzd7abx7symf3p7e7pf5e:
+  /@leanup/kolibri-components/1.0.5_cdi6v4kd7qyaipqg6jdmakxwve:
     resolution: {integrity: sha512-o+C0aC4JYJUoGDVa5Zy3bd8nLtjYyjXBMgDVaVO5sZCSvImsPVVzXm3AJMfrHEtvtxTkusQXGlflVKXAvL3fEw==}
     peerDependencies:
       '@leanup/form': '>=1.2 <2'
       '@public-ui/components': '>=1 <2'
     dependencies:
       '@leanup/form': 1.3.43
-      '@public-ui/components': 1.4.0-rc.9
+      '@public-ui/components': 1.4.2
     dev: false
 
   /@leanup/kolibri-react/1.0.5_ck7utkhldt4pmbsm74e52xhjoe:
@@ -2419,7 +2419,7 @@ packages:
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@leanup/kolibri-components': 1.0.5_ucmg3yzd7abx7symf3p7e7pf5e
+      '@leanup/kolibri-components': 1.0.5_cdi6v4kd7qyaipqg6jdmakxwve
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2658,21 +2658,21 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@public-oss/kolibri-themes/0.0.3_kbc3stdbhq2iuqrvhee66sqdfy:
+  /@public-oss/kolibri-themes/0.0.3_3klldl73gbsumq7rt4zco5h33u:
     resolution: {integrity: sha512-jljVwSLzXPKHDNsqGzfm9NLq9RYXm6NZFbD0Vfg3fB7y+MG5KI6m7vBK2zVmS+Nhw+L4PIOoYgsODJPK5qYPrA==}
     peerDependencies:
       '@public-ui/components': '>=1.1.13'
     dependencies:
-      '@public-ui/components': 1.4.0-rc.9
+      '@public-ui/components': 1.4.2
       '@public-ui/schema': 1.1.15
     dev: false
 
-  /@public-ui/components/1.4.0-rc.9:
-    resolution: {integrity: sha512-6lIzySw2vXctkmGRMcTbJcsz3g/efus9/MBCU6zDJmjuuKtJwLFSDzvSkH8t3mtBz2eNb+rAC+6kEZJKQ4FxuA==}
+  /@public-ui/components/1.4.2:
+    resolution: {integrity: sha512-Sc+z4NQ94l4r0pAdfm6I3wflUezyhQt/ioEIigKRO5rYBGy9pdVAgkob9wD0MRAZ8PP3Ojg9z1CJSOa9PWGqZg==}
     dependencies:
-      '@floating-ui/dom': 1.2.1
-      '@public-ui/core': 1.4.0-rc.9
-      '@public-ui/schema': 1.4.0-rc.9
+      '@floating-ui/dom': 1.2.3
+      '@public-ui/core': 1.4.2
+      '@public-ui/schema': 1.4.2
     dev: false
 
   /@public-ui/core/1.1.15:
@@ -2682,21 +2682,21 @@ packages:
       rxjs: 7.8.0
     dev: false
 
-  /@public-ui/core/1.4.0-rc.9:
-    resolution: {integrity: sha512-9TQiMYgg4JhTQlY6E1lKfkBYANlroO+hFnugedUkby47QeuZp7pb4cB3Eg3oby+d456XNPdl/HHbatLdcjLmHg==}
+  /@public-ui/core/1.4.2:
+    resolution: {integrity: sha512-XuIn3Xquc5hit1rQhFn53emDCLYnqYhkXc9M67R8/954nvWQYSPQiO8gwghTnBYWHkFAkAsjtYSts9s+eGterA==}
     dependencies:
       '@a11y-ui/core': 1.0.1-rc.65
       i18next: 22.4.10
     dev: false
 
-  /@public-ui/react/1.4.0-rc.9_ip3bgnhjqgwhlkc27sj27bzcj4:
-    resolution: {integrity: sha512-cIrwedTQPp3NI8ooizZ7+IceTgUKqWNYzUXy4+x2mzP+d6KS2thL66bM0zT5H+sNwLn59F+VWxzEfNEjoS9icA==}
+  /@public-ui/react/1.4.2_udkimllu34xocg3tj5ac4zjjny:
+    resolution: {integrity: sha512-2x32auE239AFZFj2Wrg+jfIzdb5isjkT+OqP34NdNc5jsEA64zE9EZxuUAF+0UcMKjypju8VnvXwpqbSfmbQSQ==}
     peerDependencies:
-      '@public-ui/components': 1.4.0-rc.9
+      '@public-ui/components': 1.4.2
       react: '>=16.14.0'
       react-dom: '>=16.14.0'
     dependencies:
-      '@public-ui/components': 1.4.0-rc.9
+      '@public-ui/components': 1.4.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2707,14 +2707,14 @@ packages:
       '@public-ui/core': 1.1.15
     dev: false
 
-  /@public-ui/schema/1.4.0-rc.9:
-    resolution: {integrity: sha512-898q6uDdynRdug9wN0CwW0jRKMU9108h8TWmb9kLJmYuo8VZ/zhdOtpZJesCV691bCgx40zSvUkmJV+BaMfDyQ==}
+  /@public-ui/schema/1.4.2:
+    resolution: {integrity: sha512-TXtjG9jw6EvxoIqtAkjv1h93zZhrVI64HpT3W7CYdvyAyNXBBrVCQJVhPOOFi+srV7reZZgbjLqE/WwB3x+7Pw==}
     dependencies:
       '@a11y-ui/core': 1.0.1-rc.65
     dev: false
 
-  /@remix-run/router/1.3.2:
-    resolution: {integrity: sha512-t54ONhl/h75X94SWsHGQ4G/ZrCEguKSRQr7DrjTciJXW0YU1QhlwYeycvK5JgkzlxmvrK7wq1NB/PLtHxoiDcA==}
+  /@remix-run/router/1.3.3:
+    resolution: {integrity: sha512-YRHie1yQEj0kqqCTCJEfHqYSSNlZQ696QJG+MMiW4mxSl9I0ojz/eRhJS4fs88Z5i6D1SmoF9d3K99/QOhI8/w==}
     engines: {node: '>=14'}
     dev: false
 
@@ -3096,8 +3096,8 @@ packages:
     resolution: {integrity: sha512-qvP0Sa0MdFNnnqm8l2lJ3EvUJGsx6/0Hwn2yBsTkXopaNONP4oY3YmKpHL2CwCxDyc4s8/BGhqpNK63JaS+uhg==}
     dev: true
 
-  /@types/nightwatch/2.3.19:
-    resolution: {integrity: sha512-c83dyCvtAaD2FEXp6PznRaVygt3DlKku9b+64J9T8s9JizfyZQclPLw5YUI8NJUANsx15d/NJpOqnmq0mRolng==}
+  /@types/nightwatch/2.3.21:
+    resolution: {integrity: sha512-81a9BE8LWENEP86HNGvJt1MZEhGqTLywF/nKjHarZ8kNmct7kLke04fZ1wugskEJ26A1oWC0jEQTPNINShMvYg==}
     dependencies:
       '@types/chai': 4.3.4
       '@types/selenium-webdriver': 4.1.10
@@ -3369,36 +3369,36 @@ packages:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
     dev: true
 
-  /@unocss/config/0.49.7:
-    resolution: {integrity: sha512-RBylyDUtnAifx3W4sQtaxjxXhDFI8RbFZrwV67ja6JUArE6mAgQT8poloa0Hc7pMwWGfHRRNcebZSkS9/v8Rlg==}
+  /@unocss/config/0.50.4:
+    resolution: {integrity: sha512-5Nvlvu3RHoZFqaxJwaN/pr9bWHg2PZ4omD90y/xe0CXWHjX9n3BJHcXqQQm0Iai6uF1IZDPOC5nj2UU2oKFxMg==}
     engines: {node: '>=14'}
     dependencies:
-      '@unocss/core': 0.49.7
+      '@unocss/core': 0.50.4
       unconfig: 0.3.7
     dev: true
 
-  /@unocss/core/0.49.7:
-    resolution: {integrity: sha512-RmSxSqpwrj2Qx4HQTg/xDZsimOfOWqGriUG1w0kFDhNmEoLuxZiDPEZhZYHIo2QaVzxxBdIiSKkMfvFOTqbUgA==}
+  /@unocss/core/0.50.4:
+    resolution: {integrity: sha512-k/8CdnO4w7f+QdvCpS3U5y6xApC4odiErkBKCCaGgBqOWkuTSL92TiBnffSEA2WepGm1+Mv4urIk20ocKYxbUQ==}
     dev: true
 
-  /@unocss/preset-mini/0.49.7:
-    resolution: {integrity: sha512-tI3ZMaP4KdsXjFXea4Ma1G9ZmQ4iCHaWK6GRo+EwISEpJo+1fXr0ST2BhrTYAOu6dKYjF6mJLK4wUuqJ5CIheg==}
+  /@unocss/preset-mini/0.50.4:
+    resolution: {integrity: sha512-M+4by82hlpZq/sE0axrepQ6sgTl65nXrbNIHhXmfIsqulH7nENELJIr/TFi7VcSJdPMGVwo9l9dHnFMhSQM5hg==}
     dependencies:
-      '@unocss/core': 0.49.7
+      '@unocss/core': 0.50.4
     dev: true
 
-  /@unocss/webpack/0.49.7_xnvm3nz4mmjaxdtzfd6rahyqou:
-    resolution: {integrity: sha512-llE9LDMF+kO0aem4TXp4Fsp+G3/6nqhDeekIbKdoNBXqOx7PcGRXAy+tcgMAy3zd8Fx4/qc4CiZ4g+uLbbFF6w==}
+  /@unocss/webpack/0.50.4_xnvm3nz4mmjaxdtzfd6rahyqou:
+    resolution: {integrity: sha512-AUmSBCpA3z7gJ+foe+IyK/HpJPp4yAHYKCGiEZ90DPGKPIlfVQQO8NLdbs7eCFqh2r2umRr/ofVdP5a2XJhe8g==}
     peerDependencies:
       webpack: ^4 || ^5
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      '@unocss/config': 0.49.7
-      '@unocss/core': 0.49.7
+      '@unocss/config': 0.50.4
+      '@unocss/core': 0.50.4
       chokidar: 3.5.3
       fast-glob: 3.2.12
-      magic-string: 0.27.0
+      magic-string: 0.30.0
       unplugin: 1.1.0
       webpack: 5.75.0_pldlj6ugx23mnbpmpqrgt6avye
       webpack-sources: 3.2.3
@@ -6395,7 +6395,7 @@ packages:
     resolution: {integrity: sha512-EUojgQaSPy6sxcqcZgQv6TVF6jiKvurji3AxhAivs/Ep4O1UpS8TusaxpybfFHZ2skRhLqzk6WR8nqNYIMMDeA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      minipass: 4.0.0
+      minipass: 4.2.4
     dev: true
 
   /fs-monkey/1.0.3:
@@ -6578,6 +6578,16 @@ packages:
       inherits: 2.0.4
       minimatch: 5.1.2
       once: 1.4.0
+    dev: true
+
+  /glob/9.2.1:
+    resolution: {integrity: sha512-Pxxgq3W0HyA3XUvSXcFhRSs+43Jsx0ddxcFrbjxNGkL2Ak5BAUBxLqI5G6ADDeCHLfzzXFhe0b1yYcctGmytMA==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 7.4.2
+      minipass: 4.2.4
+      path-scurry: 1.6.1
     dev: true
 
   /global-dirs/0.1.1:
@@ -8162,8 +8172,8 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
-  /magic-string/0.27.0:
-    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+  /magic-string/0.30.0:
+    resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.14
@@ -8394,6 +8404,13 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
+  /minimatch/7.4.2:
+    resolution: {integrity: sha512-xy4q7wou3vUoC9k1xGTXc+awNdGaGVHtFUaey8tiX4H1QRc04DZ/rmDFwNm2EBsuYEhAZ6SgMmYf3InGY6OauA==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimist-options/4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
     engines: {node: '>= 6'}
@@ -8475,11 +8492,9 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /minipass/4.0.0:
-    resolution: {integrity: sha512-g2Uuh2jEKoht+zvO6vJqXmYpflPqzRBT+Th2h01DKh5z7wbY/AZ2gCQ78cP70YoHPyFdY30YBV5WxgLOEwOykw==}
+  /minipass/4.2.4:
+    resolution: {integrity: sha512-lwycX3cBMTvcejsHITUgYj6Gy6A7Nh4Q6h9NP4sTHY1ccJlC7yKzDmiShEHsJ16Jf1nKGDEaiHxiltsJEvk0nQ==}
     engines: {node: '>=8'}
-    dependencies:
-      yallist: 4.0.0
     dev: true
 
   /minizlib/2.1.2:
@@ -8781,8 +8796,8 @@ packages:
       npm-normalize-package-bin: 3.0.0
     dev: true
 
-  /npm-check-updates/16.7.5:
-    resolution: {integrity: sha512-g+U/cxA0iTvU/syX0EjXWtV10joEKQlN5s6DCFdvpv6eXSGbSYpOjOtifiyopSekdPnjogVuIDtxNlVdJECR8w==}
+  /npm-check-updates/16.7.10:
+    resolution: {integrity: sha512-sLDgYD8ebkH9Jd6mPIq7UDGLr3DAxkHl6ZuJrEF4rauLv6DqHBxtnF16MHUPN+/eBt5QbH4GL/+nxfSAFm3TfQ==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
@@ -8799,15 +8814,15 @@ packages:
       json-parse-helpfulerror: 1.0.3
       jsonlines: 0.1.1
       lodash: 4.17.21
-      minimatch: 6.2.0
+      minimatch: 7.4.2
       p-map: 4.0.0
-      pacote: 15.1.0
+      pacote: 15.1.1
       parse-github-url: 1.0.2
       progress: 2.0.3
       prompts-ncu: 2.5.1
       rc-config-loader: 4.1.2
       remote-git-tags: 3.0.0
-      rimraf: 4.1.2
+      rimraf: 4.3.1
       semver: 7.3.8
       semver-utils: 1.1.4
       source-map-support: 0.5.21
@@ -9159,8 +9174,8 @@ packages:
       semver: 7.3.8
     dev: true
 
-  /pacote/15.1.0:
-    resolution: {integrity: sha512-FFcjtIl+BQNfeliSm7MZz5cpdohvUV1yjGnqgVM4UnVF7JslRY0ImXAygdaCDV0jjUADEWu4y5xsDV8brtrTLg==}
+  /pacote/15.1.1:
+    resolution: {integrity: sha512-eeqEe77QrA6auZxNHIp+1TzHQ0HBKf5V6c8zcaYZ134EJe1lCi+fjXATkNiEEfbG+e50nu02GLvUtmZcGOYabQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
     dependencies:
@@ -9170,7 +9185,7 @@ packages:
       '@npmcli/run-script': 6.0.0
       cacache: 17.0.2
       fs-minipass: 3.0.0
-      minipass: 4.0.0
+      minipass: 4.2.4
       npm-package-arg: 10.1.0
       npm-packlist: 7.0.2
       npm-pick-manifest: 8.0.1
@@ -9266,6 +9281,14 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: true
+
+  /path-scurry/1.6.1:
+    resolution: {integrity: sha512-OW+5s+7cw6253Q4E+8qQ/u1fVvcJQCJo/VFD8pje+dbJCF1n5ZRMV2AEHbGp+5Q7jxQIYJxkHopnj6nzdGeZLA==}
+    engines: {node: '>=14'}
+    dependencies:
+      lru-cache: 7.14.1
+      minipass: 4.2.4
     dev: true
 
   /path-to-regexp/0.1.7:
@@ -9637,26 +9660,26 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
 
-  /react-router-dom/6.8.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-67EXNfkQgf34P7+PSb6VlBuaacGhkKn3kpE51+P6zYSG2kiRoumXEL6e27zTa9+PGF2MNXbgIUHTVlleLbIcHQ==}
+  /react-router-dom/6.8.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-N/oAF1Shd7g4tWy+75IIufCGsHBqT74tnzHQhbiUTYILYF0Blk65cg+HPZqwC+6SqEyx033nKqU7by38v3lBZg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.3.2
+      '@remix-run/router': 1.3.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-router: 6.8.1_react@18.2.0
+      react-router: 6.8.2_react@18.2.0
     dev: false
 
-  /react-router/6.8.1_react@18.2.0:
-    resolution: {integrity: sha512-Jgi8BzAJQ8MkPt8ipXnR73rnD7EmZ0HFFb7jdQU24TynGW1Ooqin2KVDN9voSC+7xhqbbCd2cjGUepb6RObnyg==}
+  /react-router/6.8.2_react@18.2.0:
+    resolution: {integrity: sha512-lF7S0UmXI5Pd8bmHvMdPKI4u4S5McxmHnzJhrYi9ZQ6wE+DA8JN5BzVC5EEBuduWWDaiJ8u6YhVOCmThBli+rw==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.3.2
+      '@remix-run/router': 1.3.3
       react: 18.2.0
     dev: false
 
@@ -9951,10 +9974,12 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf/4.1.2:
-    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
+  /rimraf/4.3.1:
+    resolution: {integrity: sha512-GfHJHBzFQra23IxDzIdBqhOWfbtdgS1/dCHrDy+yvhpoJY5TdwdT28oWaHWfRpKFDLd3GZnGTx6Mlt4+anbsxQ==}
     engines: {node: '>=14'}
     hasBin: true
+    dependencies:
+      glob: 9.2.1
     dev: true
 
   /rollup-plugin-terser/7.0.2_rollup@2.79.1:
@@ -11841,8 +11866,8 @@ packages:
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  /write-excel-file/1.4.21:
-    resolution: {integrity: sha512-s7cb2vYkB6A59GuBdNkxD8uNKzlQ87AB++NDweZSKsuchYIresy1u35rf/90wccVBdEzPnFcBgcHRHtAKESslw==}
+  /write-excel-file/1.4.24:
+    resolution: {integrity: sha512-bKOWSb6duM9/bZgNgRhaFqLUvSsPrHTQ0WeMbOkEZrCpuq5odSGpGIpmg4tAomopDG1dPB+XT+4CPCL5PhzKtg==}
     dependencies:
       '@babel/runtime': 7.20.13
       archiver: 5.3.1
